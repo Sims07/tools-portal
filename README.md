@@ -44,7 +44,7 @@ Chaque fiche affiche :
 - **3 points clés**, repris des fonctionnalités principales de chaque outil.
 - La **version actuelle** et, quand elle existe, un **lien direct** vers la page d'installation (`install.html`) de l'outil.
 
-Les outils sans page d'installation hébergée (FDL Extractor, ExcelSheet Time Filler) affichent une mention du mode de distribution (fichier `.bas` fourni, `install.html` local) plutôt qu'un lien externe.
+Le seul outil sans page d'installation hébergée est FDL Extractor (macro VBA), qui affiche une mention du mode de distribution (fichier `.bas` fourni) plutôt qu'un lien externe. Les 4 autres outils, dont ExcelSheet Time Filler (`https://sims07.github.io/excelsheet-filler/install.html`), pointent vers leur page d'installation hébergée.
 
 ### 4. **Responsive**
 La grille des outils s'adapte automatiquement de 1 à 3 colonnes selon la largeur d'écran ; le schéma animé du hero est masqué sur mobile pour ne pas surcharger l'affichage.
