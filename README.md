@@ -1,6 +1,6 @@
 # 🗺️ Boîte à outils — Architecture Solutions
 
-Page vitrine statique, en un seul fichier HTML, présentant les outils internes destinés aux **architectes solutions** : Sniper Map, Visionneuse Carto SI, FDL Extractor, ExcelSheet Time Filler, le simulateur TOGAF EA Foundation et le catalogue EIP Architecture Catalog.
+Page vitrine statique, en un seul fichier HTML, présentant les outils internes destinés aux **architectes solutions** : Sniper Map, Visionneuse Carto SI, FDL Extractor, ExcelSheet Time Filler, le simulateur TOGAF EA Foundation, EIP Architecture Catalog et le Portail API Swagger/OpenAPI.
 
 ---
 
@@ -9,7 +9,7 @@ Page vitrine statique, en un seul fichier HTML, présentant les outils internes 
 Cette page ne contient aucune logique métier : c'est une **vitrine de présentation**, pensée pour être partagée en équipe ou déposée sur un portail interne, qui répertorie les outils existants, leur mode d'installation (bookmarklet, macro VBA, application web) et leurs fonctionnalités clés, sans avoir à relire chaque README individuellement.
 
 - Un **hero** présentant la démarche générale (outils qui suppriment les tâches répétitives, sans rien modifier aux applications d'entreprise).
-- Une **grille de 6 fiches outils**, avec catégorie, description, points clés et lien direct d'installation quand il existe.
+- Une **grille de 7 fiches outils**, avec catégorie, description, points clés et lien direct d'installation quand il existe.
 - Une **légende de couleurs** reprenant le code couleur des filtres de Sniper Map, pour une cohérence visuelle entre les outils et leur vitrine.
 
 ---
@@ -37,14 +37,14 @@ Un schéma vectoriel animé (nœuds colorés reliés par des lignes) illustre la
 ### 2. **Bandeau légende**
 Une légende rapide en haut de page associe chaque couleur à un domaine (Cartographie SI, Visualisation, Documents, Saisie de temps, Certification), pour retrouver un outil au coup d'œil.
 
-### 3. **Grille des 6 outils**
+### 3. **Grille des 7 outils**
 Chaque fiche affiche :
 - La **catégorie** de l'outil (Bookmarklet, Macro VBA, Application web) et le **domaine visé** (Mega Hopex, Cartographie SI, Word, Saisie des temps, Certification).
 - Une **description** orientée usage (ce que l'outil change concrètement au quotidien).
 - **3 points clés**, repris des fonctionnalités principales de chaque outil.
 - La **version actuelle** et, quand elle existe, un **lien direct** vers la page d'installation (`install.html`) de l'outil.
 
-Le seul outil sans page d'installation hébergée est FDL Extractor (macro VBA), qui affiche une mention du mode de distribution (fichier `.bas` fourni) plutôt qu'un lien externe. Les 4 autres outils, dont ExcelSheet Time Filler (`https://sims07.github.io/excelsheet-filler/install.html`), pointent vers leur page d'installation hébergée.
+Un seul outil n'a pas de lien d'ouverture direct : FDL Extractor (macro VBA, distribuée par fichier `.bas`). Les 6 autres outils pointent vers un lien hébergé, dont le Portail API Swagger/OpenAPI (`https://sims07.github.io/openapi-portal-ui/`) — une démo statique sans le proxy CORS local, donc limitée pour consulter des spécifications distantes bloquant les requêtes cross-origin ; l'usage complet avec proxy nécessite de lancer `python server.py` en local (voir le dépôt du projet).
 
 ### 4. **Responsive**
 La grille des outils s'adapte automatiquement de 1 à 3 colonnes selon la largeur d'écran ; le schéma animé du hero est masqué sur mobile pour ne pas surcharger l'affichage.
@@ -60,6 +60,7 @@ Cette page reprend la charte graphique **Ameli**, déjà utilisée par Sniper Ma
 - **Texte** : `#222324`
 - **Surfaces de cartes/grilles** : `#F9F9F9`, `#E7ECF5`
 - **Couleurs de légende** (reprises des filtres Sniper Map) : Violet `#6a0dad` (Topic), Orange `#D97706` (BDD), Jaune `#F0B323` (Batch), Rouge `#B33F2E` (Micro Service / Intégration EIP)
+- **Couleur propre au Portail API** : Vert `#89bf04`, reprise directement de sa charte d'origine (l'outil n'a pas été conçu selon la charte Ameli)
 
 ---
 
@@ -90,6 +91,7 @@ La page étant volontairement autonome (pas de build, pas de dépendances npm), 
 
 | Version | Date       | Description                                                                                     |
 |---------|------------|---------------------------------------------------------------------------------------------------|
+| V1.2    | 2026-08-05 | Ajout de la fiche **Portail API — Swagger / OpenAPI**, avec lien vers la démo hébergée (`openapi-portal-ui`, sans proxy CORS), nouvelle couleur de légende (vert — Portail API, propre à cet outil). |
 | V1.1    | 2026-07-29 | Ajout de la fiche **EIP Architecture Catalog** (application web, lien hébergé), nouvelle couleur de légende (rouge — Intégration / EIP), mise à jour des compteurs et du texte d'introduction. |
 | V1.0    | 2026-07-24 | Version initiale : hero animé, légende de couleurs, grille des 5 outils avec liens d'installation. |
 
@@ -97,7 +99,7 @@ La page étant volontairement autonome (pas de build, pas de dépendances npm), 
 
 ## 🤝 Remerciements
 
-- **Sniper Map**, **Visionneuse Carto SI**, **FDL Extractor**, **ExcelSheet Time Filler**, **TOGAF EA Foundation** et **EIP Architecture Catalog** pour le contenu et le code couleur repris dans cette vitrine.
+- **Sniper Map**, **Visionneuse Carto SI**, **FDL Extractor**, **ExcelSheet Time Filler**, **TOGAF EA Foundation**, **EIP Architecture Catalog** et **Portail API — Swagger / OpenAPI** pour le contenu et le code couleur repris dans cette vitrine.
 - **Ameli** pour la charte graphique.
 
 ---
