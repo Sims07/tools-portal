@@ -42,9 +42,10 @@ Chaque fiche affiche :
 - La **catégorie** de l'outil (Bookmarklet, Macro VBA, Application web) et le **domaine visé** (Mega Hopex, Cartographie SI, Word, Saisie des temps, Certification).
 - Une **description** orientée usage (ce que l'outil change concrètement au quotidien).
 - **3 points clés**, repris des fonctionnalités principales de chaque outil.
-- La **version actuelle** et, quand elle existe, un **lien direct** vers la page d'installation (`install.html`) de l'outil.
+- La **version actuelle** et, quand elle existe, un **lien direct** vers la page d'installation (`install.html`) ou la démo hébergée de l'outil.
+- Un **lien vers le dépôt GitHub** de l'outil, sous forme d'icône GitHub cliquable, affichée à côté du lien principal.
 
-Un seul outil n'a pas de lien d'ouverture direct : FDL Extractor (macro VBA, distribuée par fichier `.bas`). Les 6 autres outils pointent vers un lien hébergé, dont le Portail API Swagger/OpenAPI (`https://sims07.github.io/openapi-portal-ui/`) — une démo statique sans le proxy CORS local, donc limitée pour consulter des spécifications distantes bloquant les requêtes cross-origin ; l'usage complet avec proxy nécessite de lancer `python server.py` en local (voir le dépôt du projet).
+Tous les outils, y compris FDL Extractor (`https://github.com/Sims07/word-comments-to-excel`), ont désormais leur icône de dépôt GitHub. Un seul outil n'a pas de lien d'ouverture direct : FDL Extractor (macro VBA, distribuée par fichier `.bas`, donc sans démo web). Les 6 autres outils pointent vers un lien hébergé, dont le Portail API Swagger/OpenAPI (`https://sims07.github.io/openapi-portal-ui/`) — une démo statique sans le proxy CORS local, donc limitée pour consulter des spécifications distantes bloquant les requêtes cross-origin ; l'usage complet avec proxy nécessite de lancer `python server.py` en local (voir le dépôt du projet).
 
 ### 4. **Responsive**
 La grille des outils s'adapte automatiquement de 1 à 3 colonnes selon la largeur d'écran ; le schéma animé du hero est masqué sur mobile pour ne pas surcharger l'affichage.
@@ -91,6 +92,7 @@ La page étant volontairement autonome (pas de build, pas de dépendances npm), 
 
 | Version | Date       | Description                                                                                     |
 |---------|------------|---------------------------------------------------------------------------------------------------|
+| V1.3    | 2026-08-12 | Remplacement du lien « Code source » textuel par une icône GitHub cliquable sur chaque fiche ; ajout du lien de dépôt manquant pour FDL Extractor (`word-comments-to-excel`). |
 | V1.2    | 2026-08-05 | Ajout de la fiche **Portail API — Swagger / OpenAPI**, avec lien vers la démo hébergée (`openapi-portal-ui`, sans proxy CORS), nouvelle couleur de légende (vert — Portail API, propre à cet outil). |
 | V1.1    | 2026-07-29 | Ajout de la fiche **EIP Architecture Catalog** (application web, lien hébergé), nouvelle couleur de légende (rouge — Intégration / EIP), mise à jour des compteurs et du texte d'introduction. |
 | V1.0    | 2026-07-24 | Version initiale : hero animé, légende de couleurs, grille des 5 outils avec liens d'installation. |

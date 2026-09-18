@@ -247,12 +247,18 @@
   }
   .card-footer{
     margin-top:auto;
+    padding-top:16px;
+    border-top:1px solid var(--panel-2);
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .card-links{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:12px;
-    padding-top:16px;
-    border-top:1px solid var(--panel-2);
+    gap:14px;
+    flex-wrap:wrap;
   }
   .version-tag{
     font-size:11.5px;
@@ -274,6 +280,24 @@
     cursor:default;
   }
   .cta.disabled:hover{border-bottom-color:transparent;}
+  .gh-link{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:30px;
+    height:30px;
+    flex:none;
+    border:1px solid var(--panel-2);
+    border-radius:7px;
+    color:#54595f;
+    transition:background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .gh-link svg{width:16px;height:16px;}
+  .gh-link:hover{
+    background:var(--panel-2);
+    color:var(--navy);
+    border-color:var(--navy);
+  }
 
   /* ---------- FOOTER ---------- */
   footer{
@@ -290,6 +314,12 @@
 </style>
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
+  <symbol id="icon-github" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  </symbol>
+</svg>
 
 <section class="hero blueprint">
   <svg class="network-svg" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice">
@@ -356,7 +386,10 @@
       </ul>
       <div class="card-footer">
         <span class="version-tag mono">v0.0.40</span>
-        <a class="cta" href="https://sims07.github.io/hopex-search-component/install.html" target="_blank" rel="noopener">Page d'installation →</a>
+        <div class="card-links">
+          <a class="cta" href="https://sims07.github.io/hopex-search-component/install.html" target="_blank" rel="noopener">Page d'installation →</a>
+          <a class="gh-link" href="https://github.com/Sims07/hopex-search-component" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+        </div>
       </div>
     </article>
 
@@ -375,7 +408,10 @@
       </ul>
       <div class="card-footer">
         <span class="version-tag mono">v1.3</span>
-        <a class="cta" href="https://sims07.github.io/inline-image-viewer/install.html" target="_blank" rel="noopener">Page d'installation →</a>
+        <div class="card-links">
+          <a class="cta" href="https://sims07.github.io/inline-image-viewer/install.html" target="_blank" rel="noopener">Page d'installation →</a>
+          <a class="gh-link" href="https://github.com/Sims07/inline-image-viewer" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+        </div>
       </div>
     </article>
 
@@ -394,7 +430,10 @@
       </ul>
       <div class="card-footer">
         <span class="version-tag mono">Word Desktop</span>
-        <span class="cta disabled">Fichier .bas fourni</span>
+        <div class="card-links">
+          <span class="cta disabled">Fichier .bas fourni</span>
+          <a class="gh-link" href="https://github.com/Sims07/word-comments-to-excel" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+        </div>
       </div>
     </article>
 
@@ -413,7 +452,10 @@
       </ul>
       <div class="card-footer">
         <span class="version-tag mono">v0.6.6</span>
-        <a class="cta" href="https://sims07.github.io/excelsheet-filler/install.html" target="_blank" rel="noopener">Page d'installation →</a>
+        <div class="card-links">
+          <a class="cta" href="https://sims07.github.io/excelsheet-filler/install.html" target="_blank" rel="noopener">Page d'installation →</a>
+          <a class="gh-link" href="https://github.com/Sims07/excelsheet-filler" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+        </div>
       </div>
     </article>
 
@@ -432,7 +474,10 @@
       </ul>
       <div class="card-footer">
         <span class="version-tag mono">OGEA-F101</span>
-        <a class="cta" href="https://sims07.github.io/togaf-white-exam/" target="_blank" rel="noopener">Ouvrir le simulateur →</a>
+        <div class="card-links">
+          <a class="cta" href="https://sims07.github.io/togaf-white-exam/" target="_blank" rel="noopener">Ouvrir le simulateur →</a>
+          <a class="gh-link" href="https://github.com/Sims07/togaf-white-exam" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+        </div>
       </div>
     </article>
 
@@ -451,7 +496,10 @@
       </ul>
       <div class="card-footer">
         <span class="version-tag mono">Zero build</span>
-        <a class="cta" href="https://sims07.github.io/eip-catalog-viewer/" target="_blank" rel="noopener">Ouvrir le catalogue →</a>
+        <div class="card-links">
+          <a class="cta" href="https://sims07.github.io/eip-catalog-viewer/" target="_blank" rel="noopener">Ouvrir le catalogue →</a>
+          <a class="gh-link" href="https://github.com/Sims07/eip-catalog-viewer" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+        </div>
       </div>
     </article>
 
@@ -470,7 +518,10 @@
       </ul>
       <div class="card-footer">
         <span class="version-tag mono">Démo — CORS limité</span>
-        <a class="cta" href="https://sims07.github.io/openapi-portal-ui/" target="_blank" rel="noopener">Voir la démo →</a>
+        <div class="card-links">
+          <a class="cta" href="https://sims07.github.io/openapi-portal-ui/" target="_blank" rel="noopener">Voir la démo →</a>
+          <a class="gh-link" href="https://github.com/Sims07/openapi-portal-ui" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+        </div>
       </div>
     </article>
 
