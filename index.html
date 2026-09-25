@@ -373,6 +373,35 @@
     width:100%;
     height:100%;
   }
+  
+  /* ---------- LOADER ---------- */
+  .demo-view-loader{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    gap:16px;
+    z-index:1000;
+  }
+  .demo-view-loader.active{display:flex;}
+  .spinner{
+    width:48px;
+    height:48px;
+    border:4px solid var(--panel);
+    border-top-color:var(--navy);
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+  }
+  @keyframes spin{
+    to{transform:rotate(360deg);}
+  }
+  .loader-text{
+    font-size:14px;
+    color:#8a9097;
+  }
 </style>
 </head>
 <body>
@@ -605,6 +634,10 @@
     <h2 id="demoViewTitle">Démonstration</h2>
     <button id="demoViewClose">← Retour à la galerie</button>
   </div>
+  <div class="demo-view-loader" id="demoViewLoader">
+    <div class="spinner"></div>
+    <span class="loader-text">Chargement…</span>
+  </div>
   <iframe class="demo-view-iframe" id="demoViewIframe" src=""></iframe>
 </div>
 
@@ -614,6 +647,7 @@
   const demoViewTitle = document.getElementById('demoViewTitle');
   const demoViewIframe = document.getElementById('demoViewIframe');
   const demoViewClose = document.getElementById('demoViewClose');
+  const demoViewLoader = document.getElementById('demoViewLoader');
   const galleryView = document.querySelector('.gallery-view');
   
   document.querySelectorAll('.demo-link').forEach((link) => {
@@ -623,6 +657,8 @@
       const title = link.getAttribute('data-title') || 'Démonstration';
       
       demoViewTitle.textContent = title;
+      demoViewLoader.classList.add('active');
+      demoViewIframe.style.visibility = 'hidden';
       demoViewIframe.src = url;
       
       galleryView.classList.add('hidden');
@@ -631,18 +667,27 @@
     });
   });
   
-  demoViewClose.addEventListener('click', () => {
+  demoViewIframe.addEventListener('load', () => {
+    // Ignore le "load" initial déclenché par src="" au démarrage
+    if (!demoViewIframe.src) return;
+    demoViewLoader.classList.remove('active');
+    demoViewIframe.style.visibility = 'visible';
+  });
+  
+  function closeDemoView(){
     demoView.classList.remove('active');
     galleryView.classList.remove('hidden');
     demoViewIframe.src = '';
-  });
+    demoViewLoader.classList.remove('active');
+    demoViewIframe.style.visibility = 'visible';
+  }
+  
+  demoViewClose.addEventListener('click', closeDemoView);
   
   // Keyboard support
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && demoView.classList.contains('active')) {
-      demoView.classList.remove('active');
-      galleryView.classList.remove('hidden');
-      demoViewIframe.src = '';
+      closeDemoView();
     }
   });
 </script>
