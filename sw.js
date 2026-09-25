@@ -2,7 +2,7 @@
 // Vitrine statique : on met en cache la coquille de l'appli pour un accès
 // hors-ligne et une installation PWA, sans logique métier ni données perso.
 
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v3';
 const CACHE_NAME = `boite-a-outils-${CACHE_VERSION}`;
 
 const APP_SHELL = [

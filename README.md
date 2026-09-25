@@ -86,6 +86,13 @@ La page étant volontairement autonome (pas de build, pas de dépendances npm), 
 4. Poussez vers votre fork (`git push origin feature/nouvel-outil`).
 5. Ouvrez une **Pull Request** vers la branche `main`.
 
+### Hook de version du cache
+Le hook `pre-commit` incrémente automatiquement `CACHE_VERSION` dans `sw.js` et ajoute le fichier au commit. Après un nouveau clone, activez-le avec :
+
+```bash
+git config core.hooksPath .githooks
+```
+
 ---
 
 ## 📜 Historique des versions
