@@ -11,6 +11,7 @@
   "theme_color": "#0C419A",
   "lang": "fr",
   "dir": "ltr",
+  "capture_links": "new-client",
   "icons": [
     {
       "src": "icons/icon-192.png",

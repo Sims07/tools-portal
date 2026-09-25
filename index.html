@@ -324,6 +324,63 @@
     font-size:12.5px;
     color:#8a9097;
   }
+
+  /* ---------- DEMO MODAL ---------- */
+  .demo-modal{
+    display:none;
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,0.5);
+    z-index:999;
+    align-items:center;
+    justify-content:center;
+  }
+  .demo-modal.active{display:flex;}
+  .demo-modal-content{
+    position:relative;
+    width:95vw; height:95vh;
+    max-width:1200px;
+    background:var(--paper);
+    border-radius:8px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  .demo-modal-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 20px;
+    border-bottom:1px solid var(--line);
+    gap:12px;
+  }
+  .demo-modal-header h2{
+    margin:0;
+    font-size:1.1rem;
+    color:var(--navy);
+    flex:1;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  .demo-modal-close{
+    flex-none;
+    padding:8px 12px;
+    background:none;
+    border:1px solid var(--line);
+    border-radius:4px;
+    cursor:pointer;
+    font-size:14px;
+    color:var(--ink);
+    transition:background .18s;
+  }
+  .demo-modal-close:hover{background:var(--panel);}
+  .demo-modal-iframe{
+    flex:1;
+    border:none;
+    overflow:auto;
+  }
 </style>
 </head>
 <body>
@@ -488,7 +545,7 @@
       <div class="card-footer">
         <span class="version-tag mono">OGEA-F101</span>
         <div class="card-links">
-          <a class="cta" href="https://sims07.github.io/togaf-white-exam/" target="_blank" rel="noopener">Ouvrir le simulateur →</a>
+          <a class="cta demo-link" href="https://sims07.github.io/togaf-white-exam/" data-title="TOGAF EA Foundation — Simulateur">Ouvrir le simulateur →</a>
           <a class="gh-link" href="https://github.com/Sims07/togaf-white-exam" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
         </div>
       </div>
@@ -510,7 +567,7 @@
       <div class="card-footer">
         <span class="version-tag mono">Zero build</span>
         <div class="card-links">
-          <a class="cta" href="https://sims07.github.io/eip-catalog-viewer/" target="_blank" rel="noopener">Ouvrir le catalogue →</a>
+          <a class="cta demo-link" href="https://sims07.github.io/eip-catalog-viewer/" data-title="EIP Architecture Catalog">Ouvrir le catalogue →</a>
           <a class="gh-link" href="https://github.com/Sims07/eip-catalog-viewer" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
         </div>
       </div>
@@ -532,7 +589,7 @@
       <div class="card-footer">
         <span class="version-tag mono">Démo — CORS limité</span>
         <div class="card-links">
-          <a class="cta" href="https://sims07.github.io/openapi-portal-ui/" target="_blank" rel="noopener">Voir la démo →</a>
+          <a class="cta demo-link" href="https://sims07.github.io/openapi-portal-ui/" data-title="Portail API — Swagger / OpenAPI">Voir la démo →</a>
           <a class="gh-link" href="https://github.com/Sims07/openapi-portal-ui" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
         </div>
       </div>
@@ -545,6 +602,57 @@
   <span>Licence MIT — outils internes, à diffuser librement en équipe.</span>
   <span class="mono">Charte graphique Ameli</span>
 </footer>
+
+<!-- Demo Modal -->
+<div class="demo-modal" id="demoModal">
+  <div class="demo-modal-content">
+    <div class="demo-modal-header">
+      <h2 id="demoModalTitle">Démonstration</h2>
+      <button class="demo-modal-close" id="demoModalClose">← Retour</button>
+    </div>
+    <iframe class="demo-modal-iframe" id="demoModalIframe" src=""></iframe>
+  </div>
+</div>
+
+<script>
+  // Demo modal
+  const demoModal = document.getElementById('demoModal');
+  const demoModalTitle = document.getElementById('demoModalTitle');
+  const demoModalIframe = document.getElementById('demoModalIframe');
+  const demoModalClose = document.getElementById('demoModalClose');
+  
+  document.querySelectorAll('.demo-link').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const url = link.getAttribute('href');
+      const title = link.getAttribute('data-title') || 'Démonstration';
+      
+      demoModalTitle.textContent = title;
+      demoModalIframe.src = url;
+      demoModal.classList.add('active');
+    });
+  });
+  
+  demoModalClose.addEventListener('click', () => {
+    demoModal.classList.remove('active');
+    demoModalIframe.src = '';
+  });
+  
+  demoModal.addEventListener('click', (e) => {
+    if (e.target === demoModal) {
+      demoModal.classList.remove('active');
+      demoModalIframe.src = '';
+    }
+  });
+  
+  // Keyboard support
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && demoModal.classList.contains('active')) {
+      demoModal.classList.remove('active');
+      demoModalIframe.src = '';
+    }
+  });
+</script>
 
 <script>
   if ('serviceWorker' in navigator) {
