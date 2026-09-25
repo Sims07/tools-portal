@@ -1,0 +1,40 @@
+{
+  "name": "Boîte à outils — Architecture Solutions",
+  "short_name": "Boîte à outils",
+  "description": "Vitrine des outils internes pour architectes solutions : Sniper Map, Visionneuse Carto SI, FDL Extractor, ExcelSheet Time Filler, TOGAF EA Foundation, EIP Architecture Catalog et Portail API Swagger/OpenAPI.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "id": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0C419A",
+  "lang": "fr",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-192-maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
