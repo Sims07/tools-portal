@@ -8,7 +8,7 @@
 <!-- PWA -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0C419A">
-<meta name="description" content="Vitrine des outils internes pour architectes solutions : Sniper Map, Visionneuse Carto SI, FDL Extractor, ExcelSheet Time Filler, TOGAF EA Foundation, EIP Architecture Catalog et Portail API Swagger/OpenAPI.">
+<meta name="description" content="Vitrine des outils internes pour architectes solutions : Sniper Map, Visionneuse Carto SI, FDL Extractor, ExcelSheet Time Filler, TOGAF EA Foundation, EIP Architecture Catalog, DDD Architecture Catalog et Portail API Swagger/OpenAPI.">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
@@ -32,6 +32,7 @@
     --orange:#D97706;
     --red:#B33F2E;
     --amber:#F0B323;
+    --blue:#2563EB;
     --line: rgba(12,65,154,0.14);
   }
   *{box-sizing:border-box;}
@@ -157,7 +158,7 @@
     background:var(--panel);
   }
   .legend-item{
-    flex:1 1 160px;
+    flex:1 1 150px;
     padding:14px 18px;
     border-right:1px solid var(--line);
     font-size:12.5px;
@@ -431,15 +432,15 @@
     <circle class="node d4" cx="260" cy="400" r="6" fill="#D97706"/>
     <circle class="node d5" cx="440" cy="440" r="6" fill="#F0B323"/>
     <circle class="node d1" cx="110" cy="470" r="6" fill="#B33F2E"/>
-    <circle class="node d3" cx="520" cy="330" r="6" fill="#006386"/>
+    <circle class="node d3" cx="520" cy="330" r="6" fill="#2563EB"/>
   </svg>
 
   <div class="hero-inner">
     <div class="eyebrow">Outils internes — Architecture Solutions</div>
-    <h1 class="hero-title">Sept outils qui suppriment les <em>clics inutiles</em> du quotidien d'un architecte</h1>
-    <p class="hero-sub">De la cartographie SI dans Mega Hopex à la préparation de la certification TOGAF, en passant par la saisie des temps, l'extraction de revues de documents Word, le catalogue des Enterprise Integration Patterns et l'agrégation de vos APIs Swagger — chaque outil ici répond à une tâche répétitive précise, sans rien changer à vos applications d'entreprise.</p>
+    <h1 class="hero-title">Huit outils qui suppriment les <em>clics inutiles</em> du quotidien d'un architecte</h1>
+    <p class="hero-sub">De la cartographie SI dans Mega Hopex à la préparation de la certification TOGAF, en passant par la saisie des temps, l'extraction de revues de documents Word, le catalogue EIP, le catalogue DDD et l'agrégation de vos APIs Swagger — chaque outil ici répond à une tâche répétitive précise, sans rien changer à vos applications d'entreprise.</p>
     <div class="hero-meta">
-      <div><b>7</b><span>outils prêts à l'emploi</span></div>
+      <div><b>8</b><span>outils prêts à l'emploi</span></div>
       <div><b>0</b><span>installation serveur</span></div>
       <div><b>MIT</b><span>licence, code ouvert</span></div>
     </div>
@@ -453,6 +454,7 @@
   <div class="legend-item"><span class="chip" style="background:#F0B323"></span>Saisie de temps</div>
   <div class="legend-item"><span class="chip" style="background:#0C419A"></span>Certification</div>
   <div class="legend-item"><span class="chip" style="background:#B33F2E"></span>Intégration / EIP</div>
+  <div class="legend-item"><span class="chip" style="background:#2563EB"></span>Domain-Driven Design</div>
   <div class="legend-item"><span class="chip" style="background:#89bf04"></span>Portail API</div>
 </div>
 
@@ -592,6 +594,28 @@
         <div class="card-links">
           <a class="cta demo-link" href="https://sims07.github.io/eip-catalog-viewer/" data-title="EIP Architecture Catalog">Ouvrir le catalogue →</a>
           <a class="gh-link" href="https://github.com/Sims07/eip-catalog-viewer" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- DDD Catalog -->
+    <article class="card">
+      <div class="card-top">
+        <span class="card-cat mono">Application web · Domain-Driven Design</span>
+        <span class="swatch" style="background:#2563EB"></span>
+      </div>
+      <h3>DDD Architecture Catalog</h3>
+      <p class="desc">Explorez les concepts et patterns de Domain-Driven Design (Strategic &amp; Tactical DDD), et copiez leurs fiches au format Markdown pour vos ADR, dossiers d'architecture ou wikis.</p>
+      <ul class="feat">
+        <li>Patterns tactiques (Aggregate, Entity, Value Object) et stratégiques (Bounded Context, Subdomain)</li>
+        <li>Filtres par domaines, relations de contexte (Customer-Supplier, Shared Kernel...) et niveau d'abstraction</li>
+        <li>Copie Markdown en un clic avec résumé synthétique, schémas et conseils de mise en œuvre</li>
+      </ul>
+      <div class="card-footer">
+        <span class="version-tag mono">Zero build</span>
+        <div class="card-links">
+          <a class="cta demo-link" href="https://sims07.github.io/ddd-catalog-viewer/" data-title="DDD Architecture Catalog">Ouvrir le catalogue →</a>
+          <a class="gh-link" href="https://github.com/Sims07/ddd-catalog-viewer" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
         </div>
       </div>
     </article>
