@@ -8,7 +8,7 @@
 <!-- PWA -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0C419A">
-<meta name="description" content="Vitrine des outils internes pour architectes solutions : Sniper Map, Visionneuse Carto SI, FDL Extractor, ExcelSheet Time Filler, TOGAF EA Foundation, EIP Architecture Catalog, DDD Architecture Catalog, Team Topologies Catalog et Portail API Swagger/OpenAPI.">
+<meta name="description" content="Vitrine des outils internes pour architectes solutions : Sniper Map, Visionneuse Carto SI, FDL Extractor, ExcelSheet Time Filler, TOGAF EA Foundation, EIP Architecture Catalog, DDD Architecture Catalog, Team Topologies Catalog, Cognitive Load Evaluator et Portail API Swagger/OpenAPI.">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
@@ -34,6 +34,7 @@
     --amber:#F0B323;
     --blue:#2563EB;
     --teal-dark:#0D9488;
+    --pink:#DB2777;
     --line: rgba(12,65,154,0.14);
   }
   *{box-sizing:border-box;}
@@ -159,13 +160,13 @@
     background:var(--panel);
   }
   .legend-item{
-    flex:1 1 150px;
-    padding:14px 18px;
+    flex:1 1 140px;
+    padding:12px 16px;
     border-right:1px solid var(--line);
-    font-size:12.5px;
+    font-size:12px;
     display:flex;
     align-items:center;
-    gap:9px;
+    gap:8px;
     color:#44494f;
   }
   .legend-item .chip{
@@ -176,23 +177,26 @@
 
   /* ---------- TOOLKIT ---------- */
   .toolkit{
-    padding:70px 6vw 90px;
+    padding:60px 6vw 90px;
     max-width:1280px;
     margin:0 auto;
   }
-  .toolkit-head{
-    max-width:640px;
-    margin:0 0 48px;
+  
+  .section-block{
+    margin-bottom:56px;
   }
-  .toolkit-head h2{
-    font-size:1.9rem;
+  .section-title{
+    font-size:1.45rem;
     color:var(--navy);
-    margin:0 0 10px;
+    margin:0 0 6px;
+    display:flex;
+    align-items:center;
+    gap:10px;
   }
-  .toolkit-head p{
+  .section-desc{
     color:#565c63;
-    margin:0;
-    font-size:0.98rem;
+    font-size:0.95rem;
+    margin:0 0 24px;
   }
 
   .grid{
@@ -204,7 +208,7 @@
   }
   .card{
     background:var(--paper);
-    padding:28px 26px 26px;
+    padding:26px 24px 24px;
     display:flex;
     flex-direction:column;
     position:relative;
@@ -215,7 +219,7 @@
     display:flex;
     align-items:center;
     justify-content:space-between;
-    margin-bottom:16px;
+    margin-bottom:14px;
   }
   .card-cat{
     font-size:11px;
@@ -229,25 +233,25 @@
     flex:none;
   }
   .card h3{
-    font-size:1.28rem;
+    font-size:1.24rem;
     margin:0 0 8px;
     color:var(--ink);
     line-height:1.25;
   }
   .card p.desc{
     color:#4b5157;
-    font-size:0.94rem;
-    margin:0 0 18px;
+    font-size:0.92rem;
+    margin:0 0 16px;
     flex:none;
   }
   .feat{
     list-style:none;
-    padding:0; margin:0 0 22px;
-    font-size:0.86rem;
+    padding:0; margin:0 0 20px;
+    font-size:0.85rem;
     color:#565c63;
     display:flex;
     flex-direction:column;
-    gap:7px;
+    gap:6px;
   }
   .feat li{
     padding-left:16px;
@@ -262,7 +266,7 @@
   }
   .card-footer{
     margin-top:auto;
-    padding-top:16px;
+    padding-top:14px;
     border-top:1px solid var(--panel-2);
     display:flex;
     flex-direction:column;
@@ -433,15 +437,15 @@
     <circle class="node d4" cx="260" cy="400" r="6" fill="#D97706"/>
     <circle class="node d5" cx="440" cy="440" r="6" fill="#F0B323"/>
     <circle class="node d1" cx="110" cy="470" r="6" fill="#B33F2E"/>
-    <circle class="node d3" cx="520" cy="330" r="6" fill="#0D9488"/>
+    <circle class="node d3" cx="520" cy="330" r="6" fill="#DB2777"/>
   </svg>
 
   <div class="hero-inner">
     <div class="eyebrow">Outils internes — Architecture Solutions</div>
-    <h1 class="hero-title">Neuf outils qui suppriment les <em>clics inutiles</em> du quotidien d'un architecte</h1>
-    <p class="hero-sub">De la cartographie SI dans Mega Hopex à la préparation de la certification TOGAF, en passant par la saisie des temps, l'extraction de revues Word, les catalogues EIP, DDD et Team Topologies, ainsi que l'agrégation de vos APIs Swagger — chaque outil répond à une tâche répétitive précise.</p>
+    <h1 class="hero-title">Dix outils qui suppriment les <em>clics inutiles</em> du quotidien d'un architecte</h1>
+    <p class="hero-sub">De la cartographie SI dans Mega Hopex aux catalogues de patterns (EIP, DDD, Team Topologies), en passant par l'évaluation de la charge cognitive, la saisie des temps et l'agrégation d'APIs — chaque outil répond à une tâche répétitive précise.</p>
     <div class="hero-meta">
-      <div><b>9</b><span>outils prêts à l'emploi</span></div>
+      <div><b>10</b><span>outils prêts à l'emploi</span></div>
       <div><b>0</b><span>installation serveur</span></div>
       <div><b>MIT</b><span>licence, code ouvert</span></div>
     </div>
@@ -454,219 +458,267 @@
   <div class="legend-item"><span class="chip" style="background:#D97706"></span>Documents</div>
   <div class="legend-item"><span class="chip" style="background:#F0B323"></span>Saisie de temps</div>
   <div class="legend-item"><span class="chip" style="background:#0C419A"></span>Certification</div>
-  <div class="legend-item"><span class="chip" style="background:#B33F2E"></span>Intégration / EIP</div>
-  <div class="legend-item"><span class="chip" style="background:#2563EB"></span>Domain-Driven Design</div>
-  <div class="legend-item"><span class="chip" style="background:#0D9488"></span>Organisation / Teams</div>
+  <div class="legend-item"><span class="chip" style="background:#B33F2E"></span>EIP</div>
+  <div class="legend-item"><span class="chip" style="background:#2563EB"></span>DDD</div>
+  <div class="legend-item"><span class="chip" style="background:#0D9488"></span>Teams</div>
+  <div class="legend-item"><span class="chip" style="background:#DB2777"></span>Charge cognitive</div>
   <div class="legend-item"><span class="chip" style="background:#89bf04"></span>Portail API</div>
 </div>
 
 <main class="toolkit">
-  <div class="toolkit-head">
-    <h2>La boîte à outils</h2>
-    <p>Bookmarklets, macro VBA et application web — chaque fiche indique le mode d'installation et ce que l'outil change concrètement dans votre journée.</p>
-  </div>
 
-  <div class="grid">
-
-    <!-- Sniper Map -->
-    <article class="card">
-      <div class="card-top">
-        <span class="card-cat mono">Bookmarklet · Mega Hopex</span>
-        <span class="swatch" style="background:#006386"></span>
-      </div>
-      <h3>Sniper Map</h3>
-      <p class="desc">Recherchez et filtrez n'importe quel composant sur vos schémas de cartographie SI, sans quitter la vue et sans dérouler le SVG à la main.</p>
-      <ul class="feat">
-        <li>Recherche multi-termes avec opérateurs ET / OU</li>
-        <li>Filtres par nature de composant, personnalisables et partageables en équipe</li>
-        <li>Dashboard latéral avec export CSV des résultats affichés</li>
-      </ul>
-      <div class="card-footer">
-        <span class="version-tag mono">v0.0.40</span>
-        <div class="card-links">
-          <a class="cta" href="https://sims07.github.io/hopex-search-component/install.html" target="_blank" rel="noopener">Page d'installation →</a>
-          <a class="gh-link" href="https://github.com/Sims07/hopex-search-component" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+  <!-- SECTION 1 -->
+  <section class="section-block">
+    <h2 class="section-title">🗺️ Cartographie &amp; Visualisation SI</h2>
+    <p class="section-desc">Outils de navigation, de recherche et de lisibilité pour vos schémas et référentiels d'architecture.</p>
+    
+    <div class="grid">
+      <!-- Sniper Map -->
+      <article class="card">
+        <div class="card-top">
+          <span class="card-cat mono">Bookmarklet · Mega Hopex</span>
+          <span class="swatch" style="background:#006386"></span>
         </div>
-      </div>
-    </article>
-
-    <!-- Visionneuse Cartosi -->
-    <article class="card">
-      <div class="card-top">
-        <span class="card-cat mono">Bookmarklet · Cartographie SI</span>
-        <span class="swatch" style="background:#6a0dad"></span>
-      </div>
-      <h3>Visionneuse Carto SI</h3>
-      <p class="desc">Ouvrez vos plus grands schémas en plein écran, avec zoom et déplacement fluides, sans jamais perdre les liens cliquables vers le référentiel.</p>
-      <ul class="feat">
-        <li>Pan &amp; zoom centré sur le curseur, molette ou double-clic</li>
-        <li>Minimap de repérage avec glisser-déposer continu</li>
-        <li>Recalcul en temps réel des zones cliquables (<span class="mono">&lt;area&gt;</span>)</li>
-      </ul>
-      <div class="card-footer">
-        <span class="version-tag mono">v1.3</span>
-        <div class="card-links">
-          <a class="cta" href="https://sims07.github.io/inline-image-viewer/install.html" target="_blank" rel="noopener">Page d'installation →</a>
-          <a class="gh-link" href="https://github.com/Sims07/inline-image-viewer" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+        <h3>Sniper Map</h3>
+        <p class="desc">Recherchez et filtrez n'importe quel composant sur vos schémas de cartographie SI, sans quitter la vue et sans dérouler le SVG à la hand.</p>
+        <ul class="feat">
+          <li>Recherche multi-termes avec opérateurs ET / OU</li>
+          <li>Filtres par nature de composant, personnalisables et partageables</li>
+          <li>Dashboard latéral avec export CSV des résultats affichés</li>
+        </ul>
+        <div class="card-footer">
+          <span class="version-tag mono">v0.0.40</span>
+          <div class="card-links">
+            <a class="cta" href="https://sims07.github.io/hopex-search-component/install.html" target="_blank" rel="noopener">Page d'installation →</a>
+            <a class="gh-link" href="https://github.com/Sims07/hopex-search-component" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
 
-    <!-- FDL Extractor -->
-    <article class="card">
-      <div class="card-top">
-        <span class="card-cat mono">Macro VBA · Word</span>
-        <span class="swatch" style="background:#D97706"></span>
-      </div>
-      <h3>FDL Extractor</h3>
-      <p class="desc">Exportez les commentaires d'une revue de document Word vers Excel, avec le numéro de page exact calculé par Word lui-même — quelle que soit la mise en forme.</p>
-      <ul class="feat">
-        <li>Numéro de page exact, identique à celui de l'impression</li>
-        <li>Tri automatique par page puis par position dans le document</li>
-        <li>Priorité et version déduites du commentaire et du nom de fichier</li>
-      </ul>
-      <div class="card-footer">
-        <span class="version-tag mono">Word Desktop</span>
-        <div class="card-links">
-          <span class="cta disabled">Fichier .bas fourni</span>
-          <a class="gh-link" href="https://github.com/Sims07/word-comments-to-excel" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+      <!-- Visionneuse Cartosi -->
+      <article class="card">
+        <div class="card-top">
+          <span class="card-cat mono">Bookmarklet · Cartographie SI</span>
+          <span class="swatch" style="background:#6a0dad"></span>
         </div>
-      </div>
-    </article>
-
-    <!-- ExcelSheet Time Filler -->
-    <article class="card">
-      <div class="card-top">
-        <span class="card-cat mono">Bookmarklet · Saisie des temps</span>
-        <span class="swatch" style="background:#F0B323"></span>
-      </div>
-      <h3>ExcelSheet Time Filler</h3>
-      <p class="desc">Enregistrez une fois vos semaines types, puis remplissez votre grille de saisie des temps en un clic — la grille garde la main, rien n'est envoyé à côté.</p>
-      <ul class="feat">
-        <li>Templates de semaine nommés, réutilisables à volonté</li>
-        <li>Autocomplétion des tâches réellement visibles dans la grille</li>
-        <li>Sauvegarde automatique, panneau déplaçable et redimensionnable</li>
-      </ul>
-      <div class="card-footer">
-        <span class="version-tag mono">v0.6.6</span>
-        <div class="card-links">
-          <a class="cta" href="https://sims07.github.io/excelsheet-filler/install.html" target="_blank" rel="noopener">Page d'installation →</a>
-          <a class="gh-link" href="https://github.com/Sims07/excelsheet-filler" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+        <h3>Visionneuse Carto SI</h3>
+        <p class="desc">Ouvrez vos plus grands schémas en plein écran, avec zoom et déplacement fluides, sans perdre les liens cliquables vers le référentiel.</p>
+        <ul class="feat">
+          <li>Pan &amp; zoom centré sur le curseur, molette ou double-clic</li>
+          <li>Minimap de repérage avec glisser-déposer continu</li>
+          <li>Recalcul en temps réel des zones cliquables (<span class="mono">&lt;area&gt;</span>)</li>
+        </ul>
+        <div class="card-footer">
+          <span class="version-tag mono">v1.3</span>
+          <div class="card-links">
+            <a class="cta" href="https://sims07.github.io/inline-image-viewer/install.html" target="_blank" rel="noopener">Page d'installation →</a>
+            <a class="gh-link" href="https://github.com/Sims07/inline-image-viewer" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
+    </div>
+  </section>
 
-    <!-- TOGAF -->
-    <article class="card">
-      <div class="card-top">
-        <span class="card-cat mono">Application web · Certification</span>
-        <span class="swatch" style="background:#0C419A"></span>
-      </div>
-      <h3>TOGAF EA Foundation — Simulateur</h3>
-      <p class="desc">Entraînez-vous à la certification TOGAF® Part 1 (OGEA-F101) avec des examens minutés ou un mode interactif à correction immédiate.</p>
-      <ul class="feat">
-        <li>3 niveaux de difficulté, du vocabulaire ADM aux études de cas</li>
-        <li>Mode examen classique ou mode interactif avec explications</li>
-        <li>Progression et chronomètre sauvegardés entre deux sessions</li>
-      </ul>
-      <div class="card-footer">
-        <span class="version-tag mono">OGEA-F101</span>
-        <div class="card-links">
-          <a class="cta demo-link" href="https://sims07.github.io/togaf-white-exam/" data-title="TOGAF EA Foundation — Simulateur">Ouvrir le simulateur →</a>
-          <a class="gh-link" href="https://github.com/Sims07/togaf-white-exam" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+  <!-- SECTION 2 -->
+  <section class="section-block">
+    <h2 class="section-title">📚 Catalogues &amp; Modélisation d'Architecture</h2>
+    <p class="section-desc">Referentiels interactifs de patterns et concepts de référence pour enrichir vos dossiers et ADR.</p>
+    
+    <div class="grid">
+      <!-- EIP Catalog -->
+      <article class="card">
+        <div class="card-top">
+          <span class="card-cat mono">Application web · Intégration EIP</span>
+          <span class="swatch" style="background:#B33F2E"></span>
         </div>
-      </div>
-    </article>
-
-    <!-- EIP Catalog -->
-    <article class="card">
-      <div class="card-top">
-        <span class="card-cat mono">Application web · Intégration EIP</span>
-        <span class="swatch" style="background:#B33F2E"></span>
-      </div>
-      <h3>EIP Architecture Catalog</h3>
-      <p class="desc">Consultez et filtrez les Enterprise Integration Patterns de référence (Hohpe &amp; Woolf), et copiez le snippet Markdown d'un pattern directement dans vos ADR ou vos wikis.</p>
-      <ul class="feat">
-        <li>Recherche instantanée par nom, problème, solution ou tag</li>
-        <li>Filtres par grandes familles (Messaging Channels, Routing, Transformation...)</li>
-        <li>Copie Markdown en un clic : titre, schéma officiel, problème, solution, lien</li>
-      </ul>
-      <div class="card-footer">
-        <span class="version-tag mono">Zero build</span>
-        <div class="card-links">
-          <a class="cta demo-link" href="https://sims07.github.io/eip-catalog-viewer/" data-title="EIP Architecture Catalog">Ouvrir le catalogue →</a>
-          <a class="gh-link" href="https://github.com/Sims07/eip-catalog-viewer" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+        <h3>EIP Architecture Catalog</h3>
+        <p class="desc">Consultez et filtrez les Enterprise Integration Patterns de référence (Hohpe &amp; Woolf), et copiez le snippet Markdown dans vos ADR ou wikis.</p>
+        <ul class="feat">
+          <li>Recherche instantanée par nom, problème, solution ou tag</li>
+          <li>Filtres par grandes familles (Messaging Channels, Routing, Transformation...)</li>
+          <li>Copie Markdown en un clic : titre, schéma officiel, problème, solution</li>
+        </ul>
+        <div class="card-footer">
+          <span class="version-tag mono">Zero build</span>
+          <div class="card-links">
+            <a class="cta demo-link" href="https://sims07.github.io/eip-catalog-viewer/" data-title="EIP Architecture Catalog">Ouvrir le catalogue →</a>
+            <a class="gh-link" href="https://github.com/Sims07/eip-catalog-viewer" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
 
-    <!-- DDD Catalog -->
-    <article class="card">
-      <div class="card-top">
-        <span class="card-cat mono">Application web · Domain-Driven Design</span>
-        <span class="swatch" style="background:#2563EB"></span>
-      </div>
-      <h3>DDD Architecture Catalog</h3>
-      <p class="desc">Explorez les concepts et patterns de Domain-Driven Design (Strategic &amp; Tactical DDD), et copiez leurs fiches au format Markdown pour vos ADR, dossiers d'architecture ou wikis.</p>
-      <ul class="feat">
-        <li>Patterns tactiques (Aggregate, Entity, Value Object) et stratégiques (Bounded Context, Subdomain)</li>
-        <li>Filtres par domaines, relations de contexte (Customer-Supplier, Shared Kernel...) et niveau d'abstraction</li>
-        <li>Copie Markdown en un clic avec résumé synthétique, schémas et conseils de mise en œuvre</li>
-      </ul>
-      <div class="card-footer">
-        <span class="version-tag mono">Zero build</span>
-        <div class="card-links">
-          <a class="cta demo-link" href="https://sims07.github.io/ddd-catalog-viewer/" data-title="DDD Architecture Catalog">Ouvrir le catalogue →</a>
-          <a class="gh-link" href="https://github.com/Sims07/ddd-catalog-viewer" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+      <!-- DDD Catalog -->
+      <article class="card">
+        <div class="card-top">
+          <span class="card-cat mono">Application web · Domain-Driven Design</span>
+          <span class="swatch" style="background:#2563EB"></span>
         </div>
-      </div>
-    </article>
-
-    <!-- Team Topologies Catalog -->
-    <article class="card">
-      <div class="card-top">
-        <span class="card-cat mono">Application web · Organisation &amp; Teams</span>
-        <span class="swatch" style="background:#0D9488"></span>
-      </div>
-      <h3>Team Topologies Catalog</h3>
-      <p class="desc">Consultez et filtrez les 4 types d'équipes et les 3 modes d'interaction du modèle Team Topologies (Skelly &amp; Pais) pour structurer vos organisations produit et IT.</p>
-      <ul class="feat">
-        <li>Fiches détaillées des 4 types d'équipes (Stream-aligned, Enabling, Complicated-subsystem, Platform)</li>
-        <li>Description des 3 modes d'interaction (Collaboration, X-as-a-Service, Facilitating)</li>
-        <li>Copie Markdown en un clic pour l'intégration dans vos dossiers d'organisation ou wikis</li>
-      </ul>
-      <div class="card-footer">
-        <span class="version-tag mono">Zero build</span>
-        <div class="card-links">
-          <a class="cta demo-link" href="https://sims07.github.io/team-topologies-catalog/" data-title="Team Topologies Catalog">Ouvrir le catalogue →</a>
-          <a class="gh-link" href="https://github.com/Sims07/team-topologies-catalog" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+        <h3>DDD Architecture Catalog</h3>
+        <p class="desc">Explorez les concepts et patterns de Domain-Driven Design (Strategic &amp; Tactical DDD), et copiez leurs fiches au format Markdown.</p>
+        <ul class="feat">
+          <li>Patterns tactiques (Aggregate, Entity) et stratégiques (Bounded Context)</li>
+          <li>Filtres par domaines, relations de contexte et niveau d'abstraction</li>
+          <li>Copie Markdown en un clic avec résumé synthétique et conseils</li>
+        </ul>
+        <div class="card-footer">
+          <span class="version-tag mono">Zero build</span>
+          <div class="card-links">
+            <a class="cta demo-link" href="https://sims07.github.io/ddd-catalog-viewer/" data-title="DDD Architecture Catalog">Ouvrir le catalogue →</a>
+            <a class="gh-link" href="https://github.com/Sims07/ddd-catalog-viewer" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
 
-    <!-- Portail API Swagger/OpenAPI -->
-    <article class="card">
-      <div class="card-top">
-        <span class="card-cat mono">Application web · Serveur local</span>
-        <span class="swatch" style="background:#89bf04"></span>
-      </div>
-      <h3>Portail API — Swagger / OpenAPI</h3>
-      <p class="desc">Centralisez toutes vos APIs Swagger / OpenAPI dans un catalogue unique, organisé par groupes, avec la documentation interactive Swagger UI directement intégrée.</p>
-      <ul class="feat">
-        <li>Catalogue multi-API organisé par groupes, sur deux colonnes réorganisables au Drag &amp; Drop</li>
-        <li>Ajout de plusieurs URLs OpenAPI / Swagger en une seule fois</li>
-        <li>Proxy CORS local disponible en usage complet (voir dépôt) — la démo hébergée n'inclut pas le proxy</li>
-      </ul>
-      <div class="card-footer">
-        <span class="version-tag mono">Démo — CORS limité</span>
-        <div class="card-links">
-          <a class="cta demo-link" href="https://sims07.github.io/openapi-portal-ui/" data-title="Portail API — Swagger / OpenAPI">Voir la démo →</a>
-          <a class="gh-link" href="https://github.com/Sims07/openapi-portal-ui" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+      <!-- Team Topologies Catalog -->
+      <article class="card">
+        <div class="card-top">
+          <span class="card-cat mono">Application web · Organisation &amp; Teams</span>
+          <span class="swatch" style="background:#0D9488"></span>
         </div>
-      </div>
-    </article>
+        <h3>Team Topologies Catalog</h3>
+        <p class="desc">Consultez les 4 types d'équipes et les 3 modes d'interaction du modèle Team Topologies (Skelly &amp; Pais) pour structurer vos organisations IT.</p>
+        <ul class="feat">
+          <li>Types d'équipes (Stream-aligned, Enabling, Complicated-subsystem, Platform)</li>
+          <li>Description des modes d'interaction (Collaboration, XaaS, Facilitating)</li>
+          <li>Copie Markdown en un clic pour l'intégration dans vos dossiers</li>
+        </ul>
+        <div class="card-footer">
+          <span class="version-tag mono">Zero build</span>
+          <div class="card-links">
+            <a class="cta demo-link" href="https://sims07.github.io/team-topologies-catalog/" data-title="Team Topologies Catalog">Ouvrir le catalogue →</a>
+            <a class="gh-link" href="https://github.com/Sims07/team-topologies-catalog" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+          </div>
+        </div>
+      </article>
 
-  </div>
+      <!-- Cognitive Load Evaluator -->
+      <article class="card">
+        <div class="card-top">
+          <span class="card-cat mono">Application web · Charge Cognitive</span>
+          <span class="swatch" style="background:#DB2777"></span>
+        </div>
+        <h3>Cognitive Load Evaluator</h3>
+        <p class="desc">Évaluez la charge cognitive imposée aux équipes selon les principes de Team Topologies, pour ajuster le périmètre des Bounded Contexts applicatifs.</p>
+        <ul class="feat">
+          <li>Questionnaire guidé par type de charge (extrinsèque, intrinsèque, germane)</li>
+          <li>Calcul de score global avec recommandations d'affinement des frontières</li>
+          <li>Export du rapport d'évaluation en Markdown / PDF</li>
+        </ul>
+        <div class="card-footer">
+          <span class="version-tag mono">Zero build</span>
+          <div class="card-links">
+            <a class="cta demo-link" href="https://sims07.github.io/cognitive-load-evaluator/" data-title="Cognitive Load Evaluator">Ouvrir l'évaluateur →</a>
+            <a class="gh-link" href="https://github.com/Sims07/cognitive-load-evaluator" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- SECTION 3 -->
+  <section class="section-block">
+    <h2 class="section-title">🛠️ Productivité &amp; Outillage Quotidien</h2>
+    <p class="section-desc">Automatisation des tâches administratives, gestion documentaire et accès rapide aux APIs.</p>
+    
+    <div class="grid">
+      <!-- ExcelSheet Time Filler -->
+      <article class="card">
+        <div class="card-top">
+          <span class="card-cat mono">Bookmarklet · Saisie des temps</span>
+          <span class="swatch" style="background:#F0B323"></span>
+        </div>
+        <h3>ExcelSheet Time Filler</h3>
+        <p class="desc">Enregistrez une fois vos semaines types, puis remplissez votre grille de saisie des temps en un clic — sans rien envoyer hors du poste.</p>
+        <ul class="feat">
+          <li>Templates de semaine nommés, réutilisables à volonté</li>
+          <li>Autocomplétion des tâches réellement visibles dans la grille</li>
+          <li>Sauvegarde automatique, panneau déplaçable et redimensionnable</li>
+        </ul>
+        <div class="card-footer">
+          <span class="version-tag mono">v0.6.6</span>
+          <div class="card-links">
+            <a class="cta" href="https://sims07.github.io/excelsheet-filler/install.html" target="_blank" rel="noopener">Page d'installation →</a>
+            <a class="gh-link" href="https://github.com/Sims07/excelsheet-filler" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- FDL Extractor -->
+      <article class="card">
+        <div class="card-top">
+          <span class="card-cat mono">Macro VBA · Word</span>
+          <span class="swatch" style="background:#D97706"></span>
+        </div>
+        <h3>FDL Extractor</h3>
+        <p class="desc">Exportez les commentaires d'une revue Word vers Excel, avec le numéro de page exact calculé par Word lui-même.</p>
+        <ul class="feat">
+          <li>Numéro de page exact, identique à celui de l'impression</li>
+          <li>Tri automatique par page puis par position dans le document</li>
+          <li>Priorité et version déduites du commentaire et du nom de fichier</li>
+        </ul>
+        <div class="card-footer">
+          <span class="version-tag mono">Word Desktop</span>
+          <div class="card-links">
+            <span class="cta disabled">Fichier .bas fourni</span>
+            <a class="gh-link" href="https://github.com/Sims07/word-comments-to-excel" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Portail API Swagger/OpenAPI -->
+      <article class="card">
+        <div class="card-top">
+          <span class="card-cat mono">Application web · Serveur local</span>
+          <span class="swatch" style="background:#89bf04"></span>
+        </div>
+        <h3>Portail API — Swagger / OpenAPI</h3>
+        <p class="desc">Centralisez toutes vos APIs Swagger / OpenAPI dans un catalogue unique, avec documentation interactive Swagger UI intégrée.</p>
+        <ul class="feat">
+          <li>Catalogue multi-API organisé par groupes, sur deux colonnes au Drag &amp; Drop</li>
+          <li>Ajout de plusieurs URLs OpenAPI / Swagger en une seule fois</li>
+          <li>Proxy CORS local disponible en usage complet (voir dépôt)</li>
+        </ul>
+        <div class="card-footer">
+          <span class="version-tag mono">Démo — CORS limité</span>
+          <div class="card-links">
+            <a class="cta demo-link" href="https://sims07.github.io/openapi-portal-ui/" data-title="Portail API — Swagger / OpenAPI">Voir la démo →</a>
+            <a class="gh-link" href="https://github.com/Sims07/openapi-portal-ui" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- SECTION 4 -->
+  <section class="section-block">
+    <h2 class="section-title">🎓 Certification &amp; Compétences</h2>
+    <p class="section-desc">Entraînement et préparation aux examens et standards du marché.</p>
+    
+    <div class="grid">
+      <!-- TOGAF -->
+      <article class="card">
+        <div class="card-top">
+          <span class="card-cat mono">Application web · Certification</span>
+          <span class="swatch" style="background:#0C419A"></span>
+        </div>
+        <h3>TOGAF EA Foundation — Simulateur</h3>
+        <p class="desc">Entraînez-vous à la certification TOGAF® Part 1 (OGEA-F101) avec des examens minutés ou un mode interactif à correction immédiate.</p>
+        <ul class="feat">
+          <li>3 niveaux de difficulté, du vocabulaire ADM aux études de cas</li>
+          <li>Mode examen classique ou mode interactif avec explications</li>
+          <li>Progression et chronomètre sauvegardés entre deux sessions</li>
+        </ul>
+        <div class="card-footer">
+          <span class="version-tag mono">OGEA-F101</span>
+          <div class="card-links">
+            <a class="cta demo-link" href="https://sims07.github.io/togaf-white-exam/" data-title="TOGAF EA Foundation — Simulateur">Ouvrir le simulateur →</a>
+            <a class="gh-link" href="https://github.com/Sims07/togaf-white-exam" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
 </main>
 
 <footer>
@@ -716,7 +768,6 @@
   });
   
   demoViewIframe.addEventListener('load', () => {
-    // Ignore le "load" initial déclenché par src="" au démarrage
     if (!demoViewIframe.src) return;
     demoViewLoader.classList.remove('active');
     demoViewIframe.style.visibility = 'visible';
@@ -732,7 +783,6 @@
   
   demoViewClose.addEventListener('click', closeDemoView);
   
-  // Keyboard support
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && demoView.classList.contains('active')) {
       closeDemoView();
