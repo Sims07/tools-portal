@@ -38,15 +38,11 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const { request } = event;
 
-  // On ne gère que le GET (pas de POST/PUT... — page purement statique)
   if (request.method !== 'GET') return;
 
   const url = new URL(request.url);
   const isSameOrigin = url.origin === self.location.origin;
 
-  // Navigation (ouverture/rafraîchissement de la page) : réseau d'abord,
-  // repli sur le cache si hors-ligne, pour toujours servir la dernière
-  // version quand la connexion est disponible.
   if (request.mode === 'navigate') {
     event.respondWith(
       fetch(request)
@@ -60,7 +56,6 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Ressources de la coquille (même origine) : cache d'abord, réseau en repli.
   if (isSameOrigin) {
     event.respondWith(
       caches.match(request).then((cached) => {
@@ -75,8 +70,6 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Ressources externes (Google Fonts) : stale-while-revalidate, tolérant
-  // aux réponses opaques (cross-origin sans CORS).
   event.respondWith(
     caches.match(request).then((cached) => {
       const fetchPromise = fetch(request)
