@@ -149,9 +149,10 @@
   }
   @media (prefers-reduced-motion: reduce){
     .node{animation:none; opacity:.85;}
+    html{scroll-behavior:auto;}
   }
 
-  /* ---------- LEGEND STRIP ---------- */
+  /* ---------- LEGEND STRIP (navigation rapide) ---------- */
   .legend-strip{
     display:flex;
     flex-wrap:wrap;
@@ -173,6 +174,17 @@
     width:10px;height:10px;
     border-radius:2px;
     flex:none;
+  }
+  a.legend-item{
+    text-decoration:none;
+    cursor:pointer;
+    transition:background .15s ease, color .15s ease;
+  }
+  a.legend-item:hover,
+  a.legend-item:focus-visible{
+    background:var(--panel-2);
+    color:var(--navy);
+    outline:none;
   }
 
   /* ---------- TOOLKIT ---------- */
@@ -213,8 +225,13 @@
     flex-direction:column;
     position:relative;
     transition:background .18s ease;
+    scroll-margin-top:24px;
   }
   .card:hover{background:var(--panel);}
+  .card:target{
+    background:var(--panel-2);
+    box-shadow:inset 3px 0 0 var(--navy);
+  }
   .card-top{
     display:flex;
     align-items:center;
@@ -452,18 +469,18 @@
   </div>
 </section>
 
-<div class="legend-strip mono">
-  <div class="legend-item"><span class="chip" style="background:#006386"></span>Cartographie SI</div>
-  <div class="legend-item"><span class="chip" style="background:#6a0dad"></span>Visualisation</div>
-  <div class="legend-item"><span class="chip" style="background:#D97706"></span>Documents</div>
-  <div class="legend-item"><span class="chip" style="background:#F0B323"></span>Saisie de temps</div>
-  <div class="legend-item"><span class="chip" style="background:#0C419A"></span>Certification</div>
-  <div class="legend-item"><span class="chip" style="background:#B33F2E"></span>EIP</div>
-  <div class="legend-item"><span class="chip" style="background:#2563EB"></span>DDD</div>
-  <div class="legend-item"><span class="chip" style="background:#0D9488"></span>Teams</div>
-  <div class="legend-item"><span class="chip" style="background:#DB2777"></span>Charge cognitive</div>
-  <div class="legend-item"><span class="chip" style="background:#89bf04"></span>Portail API</div>
-</div>
+<nav class="legend-strip mono" aria-label="Accès rapide aux outils">
+  <a class="legend-item" href="#sniper-map"><span class="chip" style="background:#006386"></span>Cartographie SI</a>
+  <a class="legend-item" href="#visionneuse"><span class="chip" style="background:#6a0dad"></span>Visualisation</a>
+  <a class="legend-item" href="#fdl-extractor"><span class="chip" style="background:#D97706"></span>Documents</a>
+  <a class="legend-item" href="#time-filler"><span class="chip" style="background:#F0B323"></span>Saisie de temps</a>
+  <a class="legend-item" href="#togaf"><span class="chip" style="background:#0C419A"></span>Certification</a>
+  <a class="legend-item" href="#eip"><span class="chip" style="background:#B33F2E"></span>EIP</a>
+  <a class="legend-item" href="#ddd"><span class="chip" style="background:#2563EB"></span>DDD</a>
+  <a class="legend-item" href="#team-topologies"><span class="chip" style="background:#0D9488"></span>Teams</a>
+  <a class="legend-item" href="#cognitive-load"><span class="chip" style="background:#DB2777"></span>Charge cognitive</a>
+  <a class="legend-item" href="#portail-api"><span class="chip" style="background:#89bf04"></span>Portail API</a>
+</nav>
 
 <main class="toolkit">
 
@@ -474,7 +491,7 @@
     
     <div class="grid">
       <!-- Sniper Map -->
-      <article class="card">
+      <article class="card" id="sniper-map">
         <div class="card-top">
           <span class="card-cat mono">Bookmarklet · Mega Hopex</span>
           <span class="swatch" style="background:#006386"></span>
@@ -496,7 +513,7 @@
       </article>
 
       <!-- Visionneuse Cartosi -->
-      <article class="card">
+      <article class="card" id="visionneuse">
         <div class="card-top">
           <span class="card-cat mono">Bookmarklet · Cartographie SI</span>
           <span class="swatch" style="background:#6a0dad"></span>
@@ -526,7 +543,7 @@
     
     <div class="grid">
       <!-- EIP Catalog -->
-      <article class="card">
+      <article class="card" id="eip">
         <div class="card-top">
           <span class="card-cat mono">Application web · Intégration EIP</span>
           <span class="swatch" style="background:#B33F2E"></span>
@@ -548,7 +565,7 @@
       </article>
 
       <!-- DDD Catalog -->
-      <article class="card">
+      <article class="card" id="ddd">
         <div class="card-top">
           <span class="card-cat mono">Application web · Domain-Driven Design</span>
           <span class="swatch" style="background:#2563EB"></span>
@@ -570,7 +587,7 @@
       </article>
 
       <!-- Team Topologies Catalog -->
-      <article class="card">
+      <article class="card" id="team-topologies">
         <div class="card-top">
           <span class="card-cat mono">Application web · Organisation &amp; Teams</span>
           <span class="swatch" style="background:#0D9488"></span>
@@ -592,7 +609,7 @@
       </article>
 
       <!-- Cognitive Load Evaluator -->
-      <article class="card">
+      <article class="card" id="cognitive-load">
         <div class="card-top">
           <span class="card-cat mono">Application web · Charge Cognitive</span>
           <span class="swatch" style="background:#DB2777"></span>
@@ -622,7 +639,7 @@
     
     <div class="grid">
       <!-- ExcelSheet Time Filler -->
-      <article class="card">
+      <article class="card" id="time-filler">
         <div class="card-top">
           <span class="card-cat mono">Bookmarklet · Saisie des temps</span>
           <span class="swatch" style="background:#F0B323"></span>
@@ -644,7 +661,7 @@
       </article>
 
       <!-- FDL Extractor -->
-      <article class="card">
+      <article class="card" id="fdl-extractor">
         <div class="card-top">
           <span class="card-cat mono">Macro VBA · Word</span>
           <span class="swatch" style="background:#D97706"></span>
@@ -666,7 +683,7 @@
       </article>
 
       <!-- Portail API Swagger/OpenAPI -->
-      <article class="card">
+      <article class="card" id="portail-api">
         <div class="card-top">
           <span class="card-cat mono">Application web · Serveur local</span>
           <span class="swatch" style="background:#89bf04"></span>
@@ -696,7 +713,7 @@
     
     <div class="grid">
       <!-- TOGAF -->
-      <article class="card">
+      <article class="card" id="togaf">
         <div class="card-top">
           <span class="card-cat mono">Application web · Certification</span>
           <span class="swatch" style="background:#0C419A"></span>
