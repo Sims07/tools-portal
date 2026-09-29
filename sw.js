@@ -1,7 +1,7 @@
 // Boîte à outils — Architecture Solutions — Service Worker
 // Vitrine statique : mise en cache de la coquille de l'application pour accès hors-ligne.
 
-const CACHE_VERSION = 'v6';
+const CACHE_VERSION = 'v7';
 const CACHE_NAME = `boite-a-outils-${CACHE_VERSION}`;
 
 const APP_SHELL = [
