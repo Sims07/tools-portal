@@ -21,418 +21,87 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --paper:#FFFFFF;
-    --panel:#F9F9F9;
-    --panel-2:#E7ECF5;
-    --ink:#222324;
-    --navy:#0C419A;
-    --teal:#006386;
-    --violet:#6a0dad;
-    --orange:#D97706;
-    --red:#B33F2E;
-    --amber:#F0B323;
-    --blue:#2563EB;
-    --teal-dark:#0D9488;
-    --pink:#DB2777;
-    --indigo:#4F46E5;
-    --line: rgba(12,65,154,0.14);
-  }
+  :root{--paper:#FFFFFF;--panel:#F9F9F9;--panel-2:#E7ECF5;--ink:#222324;--navy:#0C419A;--teal:#006386;--amber:#F0B323;--line:rgba(12,65,154,0.14);}
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'IBM Plex Sans', sans-serif;
-    line-height:1.55;
-    -webkit-font-smoothing:antialiased;
-  }
-  .blueprint{
-    background-image:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size: 42px 42px;
-  }
-  .mono{font-family:'IBM Plex Mono', monospace;}
-  .display{font-family:'IBM Plex Sans Condensed', sans-serif; font-weight:700;}
-
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .blueprint{background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:42px 42px;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .display{font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;}
   a{color:inherit;}
 
   /* ---------- HERO ---------- */
-  .hero{
-    position:relative;
-    padding:88px 6vw 64px;
-    overflow:hidden;
-    border-bottom:1px solid var(--line);
-  }
-  .hero-inner{
-    position:relative;
-    z-index:2;
-    max-width:760px;
-  }
-  .eyebrow{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    font-size:12.5px;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--teal);
-    margin-bottom:22px;
-  }
-  .eyebrow::before{
-    content:"";
-    width:7px;height:7px;
-    background:var(--amber);
-    border-radius:1px;
-    display:inline-block;
-    transform:rotate(45deg);
-  }
-  h1.hero-title{
-    font-size:clamp(2.1rem, 4.6vw, 3.6rem);
-    line-height:1.06;
-    letter-spacing:-0.01em;
-    margin:0 0 22px;
-    color:var(--navy);
-  }
-  h1.hero-title em{
-    font-style:normal;
-    color:var(--ink);
-    background:linear-gradient(180deg, transparent 62%, var(--panel-2) 62%);
-  }
-  .hero-sub{
-    font-size:1.08rem;
-    color:#44494f;
-    max-width:600px;
-    margin:0 0 34px;
-  }
-  .hero-meta{
-    display:flex;
-    flex-wrap:wrap;
-    gap:28px;
-    font-size:13px;
-  }
-  .hero-meta div{
-    border-left:2px solid var(--panel-2);
-    padding-left:12px;
-  }
-  .hero-meta b{
-    display:block;
-    font-family:'IBM Plex Sans Condensed', sans-serif;
-    font-weight:700;
-    font-size:20px;
-    color:var(--navy);
-  }
+  .hero{position:relative;padding:40px 6vw 30px;overflow:hidden;border-bottom:1px solid var(--line);}
+  .hero-inner{position:relative;z-index:2;max-width:700px;}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;}
+  .eyebrow::before{content:"";width:6px;height:6px;background:var(--amber);border-radius:1px;display:inline-block;transform:rotate(45deg);}
+  h1.hero-title{font-size:clamp(1.6rem,3.2vw,2.3rem);line-height:1.1;letter-spacing:-0.01em;margin:0 0 12px;color:var(--navy);}
+  h1.hero-title em{font-style:normal;color:var(--ink);background:linear-gradient(180deg,transparent 62%,var(--panel-2) 62%);}
+  .hero-sub{font-size:0.95rem;line-height:1.5;color:#44494f;max-width:580px;margin:0 0 18px;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:8px 24px;font-size:12px;}
+  .hero-meta div{border-left:2px solid var(--panel-2);padding-left:10px;display:flex;align-items:baseline;gap:8px;}
+  .hero-meta b{font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;font-size:17px;color:var(--navy);}
   .hero-meta span{color:#6b7178;}
 
-  .network-svg{
-    position:absolute;
-    top:0; right:-4%;
-    width:60%; height:100%;
-    z-index:1;
-    opacity:0.9;
-  }
-  @media (max-width:880px){
-    .network-svg{display:none;}
-  }
-  .node{
-    animation: pulse 3.6s ease-in-out infinite;
-  }
-  .node.d1{animation-delay:.2s;}
-  .node.d2{animation-delay:.9s;}
-  .node.d3{animation-delay:1.5s;}
-  .node.d4{animation-delay:.6s;}
-  .node.d5{animation-delay:2.1s;}
-  @keyframes pulse{
-    0%,100%{opacity:.55; r:5;}
-    50%{opacity:1; r:7;}
-  }
-  @media (prefers-reduced-motion: reduce){
-    .node{animation:none; opacity:.85;}
-    html{scroll-behavior:auto;}
-  }
+  .network-svg{position:absolute;top:0;right:-4%;width:60%;height:100%;z-index:1;opacity:0.9;}
+  @media (max-width:880px){.network-svg{display:none;}}
+  .node{animation:pulse 3.6s ease-in-out infinite;}
+  .node.d1{animation-delay:.2s;}.node.d2{animation-delay:.9s;}.node.d3{animation-delay:1.5s;}.node.d4{animation-delay:.6s;}.node.d5{animation-delay:2.1s;}
+  @keyframes pulse{0%,100%{opacity:.55;r:5;}50%{opacity:1;r:7;}}
+  @media (prefers-reduced-motion:reduce){.node{animation:none;opacity:.85;}html{scroll-behavior:auto;}}
 
-  /* ---------- LEGEND STRIP (navigation rapide) ---------- */
-  .legend-strip{
-    position:sticky;
-    top:0;
-    z-index:10;
-    display:flex;
-    flex-wrap:nowrap;
-    overflow-x:auto;
-    gap:0;
-    border-bottom:1px solid var(--line);
-    background:var(--panel);
-    box-shadow:0 2px 8px rgba(12,65,154,0.08);
-    scrollbar-width:thin;
-  }
-  .legend-item{
-    flex:1 0 auto;
-    white-space:nowrap;
-    padding:12px 16px;
-    border-right:1px solid var(--line);
-    font-size:12px;
-    display:flex;
-    align-items:center;
-    gap:8px;
-    color:#44494f;
-  }
-  .legend-item .chip{
-    width:10px;height:10px;
-    border-radius:2px;
-    flex:none;
-  }
-  a.legend-item{
-    text-decoration:none;
-    cursor:pointer;
-    transition:background .15s ease, color .15s ease;
-  }
-  a.legend-item:hover,
-  a.legend-item:focus-visible{
-    background:var(--panel-2);
-    color:var(--navy);
-    outline:none;
-  }
+  /* ---------- LEGEND STRIP ---------- */
+  .legend-strip{position:sticky;top:0;z-index:10;display:flex;flex-wrap:nowrap;overflow-x:auto;gap:0;border-bottom:1px solid var(--line);background:var(--panel);box-shadow:0 2px 8px rgba(12,65,154,0.08);scrollbar-width:thin;}
+  .legend-item{flex:1 0 auto;white-space:nowrap;padding:12px 16px;border-right:1px solid var(--line);font-size:12px;display:flex;align-items:center;gap:8px;color:#44494f;}
+  .legend-item .chip{width:10px;height:10px;border-radius:2px;flex:none;}
+  a.legend-item{text-decoration:none;cursor:pointer;transition:background .15s ease,color .15s ease;}
+  a.legend-item:hover,a.legend-item:focus-visible{background:var(--panel-2);color:var(--navy);outline:none;}
 
   /* ---------- TOOLKIT ---------- */
-  .toolkit{
-    padding:60px 6vw 90px;
-    max-width:1280px;
-    margin:0 auto;
-  }
-  
-  .section-block{
-    margin-bottom:56px;
-  }
-  .section-title{
-    font-size:1.45rem;
-    color:var(--navy);
-    margin:0 0 6px;
-    display:flex;
-    align-items:center;
-    gap:10px;
-  }
-  .section-desc{
-    color:#565c63;
-    font-size:0.95rem;
-    margin:0 0 24px;
-  }
-
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
-    gap:1px;
-    background:var(--line);
-    border:1px solid var(--line);
-  }
-  .card{
-    background:var(--paper);
-    padding:26px 24px 24px;
-    display:flex;
-    flex-direction:column;
-    position:relative;
-    transition:background .18s ease;
-    scroll-margin-top:68px;
-  }
+  .toolkit{padding:60px 6vw 90px;max-width:1280px;margin:0 auto;}
+  .section-block{margin-bottom:56px;}
+  .section-title{font-size:1.45rem;color:var(--navy);margin:0 0 6px;display:flex;align-items:center;gap:10px;}
+  .section-desc{color:#565c63;font-size:0.95rem;margin:0 0 24px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);}
+  .card{background:var(--paper);padding:26px 24px 24px;display:flex;flex-direction:column;position:relative;transition:background .18s ease;scroll-margin-top:68px;}
   .card:hover{background:var(--panel);}
-  .card:target{
-    background:var(--panel-2);
-    box-shadow:inset 3px 0 0 var(--navy);
-  }
-  .card-top{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:14px;
-  }
-  .card-cat{
-    font-size:11px;
-    letter-spacing:0.08em;
-    text-transform:uppercase;
-    color:#767c83;
-  }
-  .swatch{
-    width:14px;height:14px;
-    border-radius:3px;
-    flex:none;
-  }
-  .card h3{
-    font-size:1.24rem;
-    margin:0 0 8px;
-    color:var(--ink);
-    line-height:1.25;
-  }
-  .card p.desc{
-    color:#4b5157;
-    font-size:0.92rem;
-    margin:0 0 16px;
-    flex:none;
-  }
-  .feat{
-    list-style:none;
-    padding:0; margin:0 0 20px;
-    font-size:0.85rem;
-    color:#565c63;
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-  }
-  .feat li{
-    padding-left:16px;
-    position:relative;
-  }
-  .feat li::before{
-    content:"";
-    position:absolute;
-    left:0; top:7px;
-    width:6px;height:1.5px;
-    background:var(--teal);
-  }
-  .card-footer{
-    margin-top:auto;
-    padding-top:14px;
-    border-top:1px solid var(--panel-2);
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-  }
-  .card-links{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:14px;
-    flex-wrap:wrap;
-  }
-  .version-tag{
-    font-size:11.5px;
-    color:#8a9097;
-  }
-  .cta{
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    font-size:0.86rem;
-    font-weight:500;
-    color:var(--navy);
-    text-decoration:none;
-    border-bottom:1px solid transparent;
-  }
+  .card:target{background:var(--panel-2);box-shadow:inset 3px 0 0 var(--navy);}
+  .card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+  .card-cat{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#767c83;}
+  .swatch{width:14px;height:14px;border-radius:3px;flex:none;}
+  .card h3{font-size:1.24rem;margin:0 0 8px;color:var(--ink);line-height:1.25;}
+  .card p.desc{color:#4b5157;font-size:0.92rem;margin:0 0 16px;flex:none;}
+  .feat{list-style:none;padding:0;margin:0 0 20px;font-size:0.85rem;color:#565c63;display:flex;flex-direction:column;gap:6px;}
+  .feat li{padding-left:16px;position:relative;}
+  .feat li::before{content:"";position:absolute;left:0;top:7px;width:6px;height:1.5px;background:var(--teal);}
+  .card-footer{margin-top:auto;padding-top:14px;border-top:1px solid var(--panel-2);display:flex;flex-direction:column;gap:10px;}
+  .card-links{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+  .version-tag{font-size:11.5px;color:#8a9097;}
+  .cta{display:inline-flex;align-items:center;gap:6px;font-size:0.86rem;font-weight:500;color:var(--navy);text-decoration:none;border-bottom:1px solid transparent;}
   .cta:hover{border-bottom-color:var(--navy);}
-  .cta.disabled{
-    color:#9aa0a6;
-    cursor:default;
-  }
+  .cta.disabled{color:#9aa0a6;cursor:default;}
   .cta.disabled:hover{border-bottom-color:transparent;}
-  .gh-link{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    width:30px;
-    height:30px;
-    flex:none;
-    border:1px solid var(--panel-2);
-    border-radius:7px;
-    color:#54595f;
-    transition:background .15s ease, color .15s ease, border-color .15s ease;
-  }
+  .gh-link{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;flex:none;border:1px solid var(--panel-2);border-radius:7px;color:#54595f;transition:background .15s ease,color .15s ease,border-color .15s ease;}
   .gh-link svg{width:16px;height:16px;}
-  .gh-link:hover{
-    background:var(--panel-2);
-    color:var(--navy);
-    border-color:var(--navy);
-  }
+  .gh-link:hover{background:var(--panel-2);color:var(--navy);border-color:var(--navy);}
 
-  /* ---------- FOOTER ---------- */
-  footer{
-    padding:36px 6vw;
-    border-top:1px solid var(--line);
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-    justify-content:space-between;
-    align-items:center;
-    font-size:12.5px;
-    color:#8a9097;
-  }
+  footer{padding:36px 6vw;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;font-size:12.5px;color:#8a9097;}
 
   /* ---------- DEMO VIEW ---------- */
   .gallery-view{display:block;}
-  .demo-view{display:none;}
-  
+  .demo-view{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:var(--paper);z-index:999;flex-direction:column;}
   .gallery-view.hidden{display:none;}
   .demo-view.active{display:flex;}
-  
-  .demo-view{
-    position:fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    background:var(--paper);
-    z-index:999;
-    flex-direction:column;
-  }
-  .demo-view-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:12px 20px;
-    border-bottom:1px solid var(--line);
-    background:var(--paper);
-    gap:12px;
-    flex-none;
-  }
-  .demo-view-header button{
-    padding:8px 14px;
-    background:none;
-    border:1px solid var(--line);
-    border-radius:4px;
-    cursor:pointer;
-    font-size:14px;
-    color:var(--ink);
-    transition:background .18s;
-  }
+  .demo-view-header{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:1px solid var(--line);background:var(--paper);gap:12px;}
+  .demo-view-header button{padding:8px 14px;background:none;border:1px solid var(--line);border-radius:4px;cursor:pointer;font-size:14px;color:var(--ink);transition:background .18s;}
   .demo-view-header button:hover{background:var(--panel);}
-  .demo-view-header h2{
-    margin:0;
-    font-size:1rem;
-    color:var(--navy);
-    flex:1;
-  }
-  .demo-view-iframe{
-    flex:1;
-    border:none;
-    width:100%;
-    height:100%;
-  }
-  
-  /* ---------- LOADER ---------- */
-  .demo-view-loader{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    display:none;
-    flex-direction:column;
-    align-items:center;
-    gap:16px;
-    z-index:1000;
-  }
+  .demo-view-header h2{margin:0;font-size:1rem;color:var(--navy);flex:1;}
+  .demo-view-iframe{flex:1;border:none;width:100%;height:100%;}
+  .demo-view-loader{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:none;flex-direction:column;align-items:center;gap:16px;z-index:1000;}
   .demo-view-loader.active{display:flex;}
-  .spinner{
-    width:48px;
-    height:48px;
-    border:4px solid var(--panel);
-    border-top-color:var(--navy);
-    border-radius:50%;
-    animation:spin .8s linear infinite;
-  }
-  @keyframes spin{
-    to{transform:rotate(360deg);}
-  }
-  .loader-text{
-    font-size:14px;
-    color:#8a9097;
-  }
+  .spinner{width:48px;height:48px;border:4px solid var(--panel);border-top-color:var(--navy);border-radius:50%;animation:spin .8s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .loader-text{font-size:14px;color:#8a9097;}
 </style>
 </head>
 <body>
@@ -468,7 +137,7 @@
   <div class="hero-inner">
     <div class="eyebrow">Outils internes — Architecture Solutions</div>
     <h1 class="hero-title">Onze outils qui suppriment les <em>clics inutiles</em> du quotidien d'un architecte</h1>
-    <p class="hero-sub">De la cartographie SI dans Mega Hopex aux catalogues de patterns (EIP, DDD, Team Topologies, Plateforme), en passant par l'évaluation de la charge cognitive, la saisie des temps et l'agrégation d'APIs — chaque outil répond à une tâche répétitive précise.</p>
+    <p class="hero-sub">De la cartographie SI aux catalogues de patterns (EIP, DDD, Team Topologies, Plateforme), en passant par la charge cognitive, la saisie des temps et l'agrégation d'APIs : un outil par tâche répétitive.</p>
     <div class="hero-meta">
       <div><b>11</b><span>outils prêts à l'emploi</span></div>
       <div><b>0</b><span>installation serveur</span></div>
@@ -480,15 +149,15 @@
 <nav class="legend-strip mono" aria-label="Accès rapide aux outils">
   <a class="legend-item" href="#sniper-map"><span class="chip" style="background:#006386"></span>Cartographie SI</a>
   <a class="legend-item" href="#visionneuse"><span class="chip" style="background:#6a0dad"></span>Visualisation</a>
-  <a class="legend-item" href="#fdl-extractor"><span class="chip" style="background:#D97706"></span>Documents</a>
-  <a class="legend-item" href="#time-filler"><span class="chip" style="background:#F0B323"></span>Saisie de temps</a>
-  <a class="legend-item" href="#togaf"><span class="chip" style="background:#0C419A"></span>Certification</a>
   <a class="legend-item" href="#eip"><span class="chip" style="background:#B33F2E"></span>EIP</a>
   <a class="legend-item" href="#ddd"><span class="chip" style="background:#2563EB"></span>DDD</a>
   <a class="legend-item" href="#team-topologies"><span class="chip" style="background:#0D9488"></span>Teams</a>
   <a class="legend-item" href="#cognitive-load"><span class="chip" style="background:#DB2777"></span>Charge cognitive</a>
   <a class="legend-item" href="#platform-patterns"><span class="chip" style="background:#4F46E5"></span>Plateforme</a>
+  <a class="legend-item" href="#time-filler"><span class="chip" style="background:#F0B323"></span>Saisie de temps</a>
+  <a class="legend-item" href="#fdl-extractor"><span class="chip" style="background:#D97706"></span>Documents</a>
   <a class="legend-item" href="#portail-api"><span class="chip" style="background:#89bf04"></span>Portail API</a>
+  <a class="legend-item" href="#togaf"><span class="chip" style="background:#0C419A"></span>Certification</a>
 </nav>
 
 <main class="toolkit">
@@ -497,14 +166,9 @@
   <section class="section-block">
     <h2 class="section-title">🗺️ Cartographie &amp; Visualisation SI</h2>
     <p class="section-desc">Outils de navigation, de recherche et de lisibilité pour vos schémas et référentiels d'architecture.</p>
-    
     <div class="grid">
-      <!-- Sniper Map -->
       <article class="card" id="sniper-map">
-        <div class="card-top">
-          <span class="card-cat mono">Bookmarklet · Mega Hopex</span>
-          <span class="swatch" style="background:#006386"></span>
-        </div>
+        <div class="card-top"><span class="card-cat mono">Bookmarklet · Mega Hopex</span><span class="swatch" style="background:#006386"></span></div>
         <h3>Sniper Map</h3>
         <p class="desc">Recherchez et filtrez n'importe quel composant sur vos schémas de cartographie SI, sans quitter la vue et sans dérouler le SVG à la hand.</p>
         <ul class="feat">
@@ -521,12 +185,8 @@
         </div>
       </article>
 
-      <!-- Visionneuse Cartosi -->
       <article class="card" id="visionneuse">
-        <div class="card-top">
-          <span class="card-cat mono">Bookmarklet · Cartographie SI</span>
-          <span class="swatch" style="background:#6a0dad"></span>
-        </div>
+        <div class="card-top"><span class="card-cat mono">Bookmarklet · Cartographie SI</span><span class="swatch" style="background:#6a0dad"></span></div>
         <h3>Visionneuse Carto SI</h3>
         <p class="desc">Ouvrez vos plus grands schémas en plein écran, avec zoom et déplacement fluides, sans perdre les liens cliquables vers le référentiel.</p>
         <ul class="feat">
@@ -549,14 +209,9 @@
   <section class="section-block">
     <h2 class="section-title">📚 Catalogues &amp; Modélisation d'Architecture</h2>
     <p class="section-desc">Referentiels interactifs de patterns et concepts de référence pour enrichir vos dossiers et ADR.</p>
-    
     <div class="grid">
-      <!-- EIP Catalog -->
       <article class="card" id="eip">
-        <div class="card-top">
-          <span class="card-cat mono">Application web · Intégration EIP</span>
-          <span class="swatch" style="background:#B33F2E"></span>
-        </div>
+        <div class="card-top"><span class="card-cat mono">Application web · Intégration EIP</span><span class="swatch" style="background:#B33F2E"></span></div>
         <h3>EIP Architecture Catalog</h3>
         <p class="desc">Consultez et filtrez les Enterprise Integration Patterns de référence (Hohpe &amp; Woolf), et copiez le snippet Markdown dans vos ADR ou wikis.</p>
         <ul class="feat">
@@ -573,12 +228,8 @@
         </div>
       </article>
 
-      <!-- DDD Catalog -->
       <article class="card" id="ddd">
-        <div class="card-top">
-          <span class="card-cat mono">Application web · Domain-Driven Design</span>
-          <span class="swatch" style="background:#2563EB"></span>
-        </div>
+        <div class="card-top"><span class="card-cat mono">Application web · Domain-Driven Design</span><span class="swatch" style="background:#2563EB"></span></div>
         <h3>DDD Architecture Catalog</h3>
         <p class="desc">Explorez les concepts et patterns de Domain-Driven Design (Strategic &amp; Tactical DDD), et copiez leurs fiches au format Markdown.</p>
         <ul class="feat">
@@ -595,12 +246,8 @@
         </div>
       </article>
 
-      <!-- Team Topologies Catalog -->
       <article class="card" id="team-topologies">
-        <div class="card-top">
-          <span class="card-cat mono">Application web · Organisation &amp; Teams</span>
-          <span class="swatch" style="background:#0D9488"></span>
-        </div>
+        <div class="card-top"><span class="card-cat mono">Application web · Organisation &amp; Teams</span><span class="swatch" style="background:#0D9488"></span></div>
         <h3>Team Topologies Catalog</h3>
         <p class="desc">Consultez les 4 types d'équipes et les 3 modes d'interaction du modèle Team Topologies (Skelly &amp; Pais) pour structurer vos organisations IT.</p>
         <ul class="feat">
@@ -617,12 +264,8 @@
         </div>
       </article>
 
-      <!-- Cognitive Load Evaluator -->
       <article class="card" id="cognitive-load">
-        <div class="card-top">
-          <span class="card-cat mono">Application web · Charge Cognitive</span>
-          <span class="swatch" style="background:#DB2777"></span>
-        </div>
+        <div class="card-top"><span class="card-cat mono">Application web · Charge Cognitive</span><span class="swatch" style="background:#DB2777"></span></div>
         <h3>Cognitive Load Evaluator</h3>
         <p class="desc">Évaluez la charge cognitive imposée aux équipes selon les principes de Team Topologies, pour ajuster le périmètre des Bounded Contexts applicatifs.</p>
         <ul class="feat">
@@ -639,12 +282,8 @@
         </div>
       </article>
 
-      <!-- Platform Pattern Catalog -->
       <article class="card" id="platform-patterns">
-        <div class="card-top">
-          <span class="card-cat mono">Application web · Platform Engineering</span>
-          <span class="swatch" style="background:#4F46E5"></span>
-        </div>
+        <div class="card-top"><span class="card-cat mono">Application web · Platform Engineering</span><span class="swatch" style="background:#4F46E5"></span></div>
         <h3>Platform Pattern Catalog</h3>
         <p class="desc">Explorez les patterns de stratégie de plateforme de Gregor Hohpe (Platform Strategy, Software Architect Elevator) et composez votre blueprint d'architecture.</p>
         <ul class="feat">
@@ -667,14 +306,9 @@
   <section class="section-block">
     <h2 class="section-title">🛠️ Productivité &amp; Outillage Quotidien</h2>
     <p class="section-desc">Automatisation des tâches administratives, gestion documentaire et accès rapide aux APIs.</p>
-    
     <div class="grid">
-      <!-- ExcelSheet Time Filler -->
       <article class="card" id="time-filler">
-        <div class="card-top">
-          <span class="card-cat mono">Bookmarklet · Saisie des temps</span>
-          <span class="swatch" style="background:#F0B323"></span>
-        </div>
+        <div class="card-top"><span class="card-cat mono">Bookmarklet · Saisie des temps</span><span class="swatch" style="background:#F0B323"></span></div>
         <h3>ExcelSheet Time Filler</h3>
         <p class="desc">Enregistrez une fois vos semaines types, puis remplissez votre grille de saisie des temps en un clic — sans rien envoyer hors du poste.</p>
         <ul class="feat">
@@ -691,12 +325,8 @@
         </div>
       </article>
 
-      <!-- FDL Extractor -->
       <article class="card" id="fdl-extractor">
-        <div class="card-top">
-          <span class="card-cat mono">Macro VBA · Word</span>
-          <span class="swatch" style="background:#D97706"></span>
-        </div>
+        <div class="card-top"><span class="card-cat mono">Macro VBA · Word</span><span class="swatch" style="background:#D97706"></span></div>
         <h3>FDL Extractor</h3>
         <p class="desc">Exportez les commentaires d'une revue Word vers Excel, avec le numéro de page exact calculé par Word lui-même.</p>
         <ul class="feat">
@@ -713,12 +343,8 @@
         </div>
       </article>
 
-      <!-- Portail API Swagger/OpenAPI -->
       <article class="card" id="portail-api">
-        <div class="card-top">
-          <span class="card-cat mono">Application web · Serveur local</span>
-          <span class="swatch" style="background:#89bf04"></span>
-        </div>
+        <div class="card-top"><span class="card-cat mono">Application web · Serveur local</span><span class="swatch" style="background:#89bf04"></span></div>
         <h3>Portail API — Swagger / OpenAPI</h3>
         <p class="desc">Centralisez toutes vos APIs Swagger / OpenAPI dans un catalogue unique, avec documentation interactive Swagger UI intégrée.</p>
         <ul class="feat">
@@ -741,14 +367,9 @@
   <section class="section-block">
     <h2 class="section-title">🎓 Certification &amp; Compétences</h2>
     <p class="section-desc">Entraînement et préparation aux examens et standards du marché.</p>
-    
     <div class="grid">
-      <!-- TOGAF -->
       <article class="card" id="togaf">
-        <div class="card-top">
-          <span class="card-cat mono">Application web · Certification</span>
-          <span class="swatch" style="background:#0C419A"></span>
-        </div>
+        <div class="card-top"><span class="card-cat mono">Application web · Certification</span><span class="swatch" style="background:#0C419A"></span></div>
         <h3>TOGAF EA Foundation — Simulateur</h3>
         <p class="desc">Entraînez-vous à la certification TOGAF® Part 1 (OGEA-F101) avec des examens minutés ou un mode interactif à correction immédiate.</p>
         <ul class="feat">
@@ -790,37 +411,34 @@
 </div>
 
 <script>
-  // Demo view (seamless, no modal)
   const demoView = document.getElementById('demoView');
   const demoViewTitle = document.getElementById('demoViewTitle');
   const demoViewIframe = document.getElementById('demoViewIframe');
   const demoViewClose = document.getElementById('demoViewClose');
   const demoViewLoader = document.getElementById('demoViewLoader');
   const galleryView = document.querySelector('.gallery-view');
-  
+
   document.querySelectorAll('.demo-link').forEach((link) => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const url = link.getAttribute('href');
       const title = link.getAttribute('data-title') || 'Démonstration';
-      
       demoViewTitle.textContent = title;
       demoViewLoader.classList.add('active');
       demoViewIframe.style.visibility = 'hidden';
       demoViewIframe.src = url;
-      
       galleryView.classList.add('hidden');
       demoView.classList.add('active');
       window.scrollTo(0, 0);
     });
   });
-  
+
   demoViewIframe.addEventListener('load', () => {
     if (!demoViewIframe.src) return;
     demoViewLoader.classList.remove('active');
     demoViewIframe.style.visibility = 'visible';
   });
-  
+
   function closeDemoView(){
     demoView.classList.remove('active');
     galleryView.classList.remove('hidden');
@@ -828,13 +446,10 @@
     demoViewLoader.classList.remove('active');
     demoViewIframe.style.visibility = 'visible';
   }
-  
+
   demoViewClose.addEventListener('click', closeDemoView);
-  
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && demoView.classList.contains('active')) {
-      closeDemoView();
-    }
+    if (e.key === 'Escape' && demoView.classList.contains('active')) closeDemoView();
   });
 </script>
 
