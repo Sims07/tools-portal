@@ -30,6 +30,10 @@
   .display{font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;}
   a{color:inherit;}
 
+  /* ---------- BANDEAU HORS-LIGNE ---------- */
+  .offline-banner{display:flex;align-items:center;justify-content:center;gap:10px;padding:8px 16px;background:#FFF4D6;border-bottom:1px solid #E8C766;color:#5c4400;font-size:13px;}
+  .offline-banner[hidden]{display:none;}
+
   /* ---------- HERO ---------- */
   .hero{position:relative;padding:40px 6vw 30px;overflow:hidden;border-bottom:1px solid var(--line);}
   .hero-inner{position:relative;z-index:2;max-width:700px;}
@@ -42,6 +46,11 @@
   .hero-meta div{border-left:2px solid var(--panel-2);padding-left:10px;display:flex;align-items:baseline;gap:8px;}
   .hero-meta b{font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;font-size:17px;color:var(--navy);}
   .hero-meta span{color:#6b7178;}
+
+  .install-btn{margin-top:18px;display:inline-flex;align-items:center;gap:8px;padding:9px 16px;background:var(--navy);color:#fff;border:none;border-radius:4px;font-family:inherit;font-size:0.88rem;font-weight:500;cursor:pointer;transition:background .15s ease;}
+  .install-btn:hover{background:var(--teal);}
+  .install-btn:focus-visible{outline:2px solid var(--teal);outline-offset:2px;}
+  .install-btn[hidden]{display:none;}
 
   .network-svg{position:absolute;top:0;right:-4%;width:60%;height:100%;z-index:1;opacity:0.9;}
   @media (max-width:880px){.network-svg{display:none;}}
@@ -85,6 +94,10 @@
   .gh-link svg{width:16px;height:16px;}
   .gh-link:hover{background:var(--panel-2);color:var(--navy);border-color:var(--navy);}
 
+  /* Démos indisponibles hors-ligne */
+  body.is-offline .demo-link{color:#9aa0a6;cursor:not-allowed;}
+  body.is-offline .demo-link:hover{border-bottom-color:transparent;}
+
   footer{padding:36px 6vw;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;font-size:12.5px;color:#8a9097;}
 
   /* ---------- DEMO VIEW ---------- */
@@ -102,6 +115,14 @@
   .spinner{width:48px;height:48px;border:4px solid var(--panel);border-top-color:var(--navy);border-radius:50%;animation:spin .8s linear infinite;}
   @keyframes spin{to{transform:rotate(360deg);}}
   .loader-text{font-size:14px;color:#8a9097;}
+
+  /* ---------- TOAST DE MISE À JOUR ---------- */
+  .update-toast{position:fixed;right:20px;bottom:20px;z-index:1100;display:flex;align-items:center;gap:14px;padding:12px 16px;background:var(--navy);color:#fff;border-radius:6px;box-shadow:0 6px 20px rgba(12,65,154,0.3);font-size:13.5px;max-width:calc(100vw - 40px);}
+  .update-toast[hidden]{display:none;}
+  .update-toast button{padding:6px 12px;border-radius:4px;border:1px solid rgba(255,255,255,0.6);background:transparent;color:#fff;font-family:inherit;font-size:13px;cursor:pointer;}
+  .update-toast button:hover{background:rgba(255,255,255,0.15);}
+  .update-toast button:focus-visible{outline:2px solid #fff;outline-offset:2px;}
+  .update-toast .toast-dismiss{border:none;padding:6px 8px;opacity:.8;}
 </style>
 </head>
 <body>
@@ -113,6 +134,11 @@
 </svg>
 
 <div class="gallery-view">
+
+<div class="offline-banner" id="offlineBanner" role="status" aria-live="polite" hidden>
+  <span aria-hidden="true">⚠️</span>
+  <span>Vous êtes hors-ligne : les démos et les pages d'installation, hébergées sur d'autres sites, sont indisponibles.</span>
+</div>
 
 <section class="hero blueprint">
   <svg class="network-svg" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice">
@@ -143,6 +169,7 @@
       <div><b>0</b><span>installation serveur</span></div>
       <div><b>MIT</b><span>licence, code ouvert</span></div>
     </div>
+    <button type="button" class="install-btn" id="installBtn" hidden>⬇ Installer l'application</button>
   </div>
 </section>
 
@@ -407,7 +434,18 @@
     <div class="spinner"></div>
     <span class="loader-text">Chargement…</span>
   </div>
-  <iframe class="demo-view-iframe" id="demoViewIframe" src=""></iframe>
+  <iframe class="demo-view-iframe" id="demoViewIframe" src=""
+    sandbox="allow-scripts allow-same-origin allow-popups allow-downloads allow-forms allow-modals"
+    allow="clipboard-write"
+    referrerpolicy="no-referrer-when-downgrade"
+    title="Démonstration de l'outil"></iframe>
+</div>
+
+<!-- Toast de mise à jour -->
+<div class="update-toast" id="updateToast" role="status" aria-live="polite" hidden>
+  <span>Nouvelle version disponible.</span>
+  <button type="button" id="updateReload">Recharger</button>
+  <button type="button" class="toast-dismiss" id="updateDismiss" aria-label="Ignorer">✕</button>
 </div>
 
 <script>
@@ -417,19 +455,29 @@
   const demoViewClose = document.getElementById('demoViewClose');
   const demoViewLoader = document.getElementById('demoViewLoader');
   const galleryView = document.querySelector('.gallery-view');
+  const offlineBanner = document.getElementById('offlineBanner');
+  const demoLinks = document.querySelectorAll('.demo-link');
 
-  document.querySelectorAll('.demo-link').forEach((link) => {
+  const OFFLINE_HINT = "Indisponible hors-ligne : cette démo est hébergée sur un autre site.";
+
+  /* ---------- Démos ---------- */
+  function openDemo(link){
+    if (!navigator.onLine) return;
+    const url = link.getAttribute('href');
+    const title = link.getAttribute('data-title') || 'Démonstration';
+    demoViewTitle.textContent = title;
+    demoViewLoader.classList.add('active');
+    demoViewIframe.style.visibility = 'hidden';
+    demoViewIframe.src = url;
+    galleryView.classList.add('hidden');
+    demoView.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  demoLinks.forEach((link) => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      const url = link.getAttribute('href');
-      const title = link.getAttribute('data-title') || 'Démonstration';
-      demoViewTitle.textContent = title;
-      demoViewLoader.classList.add('active');
-      demoViewIframe.style.visibility = 'hidden';
-      demoViewIframe.src = url;
-      galleryView.classList.add('hidden');
-      demoView.classList.add('active');
-      window.scrollTo(0, 0);
+      openDemo(link);
     });
   });
 
@@ -451,16 +499,96 @@
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && demoView.classList.contains('active')) closeDemoView();
   });
+
+  /* ---------- Lien profond (#demo=<id-de-la-fiche>) : raccourcis PWA ---------- */
+  function openDemoFromHash(hash){
+    const match = /^#demo=([a-z0-9-]+)$/i.exec(hash || '');
+    if (!match) return false;
+    const link = document.querySelector('#' + CSS.escape(match[1]) + ' .demo-link');
+    if (!link) return false;
+    history.replaceState(null, '', location.pathname + location.search);
+    openDemo(link);
+    return true;
+  }
+
+  openDemoFromHash(location.hash);
+  window.addEventListener('hashchange', () => openDemoFromHash(location.hash));
+
+  // Fenêtre déjà ouverte (launch_handler: focus-existing) : le raccourci arrive via launchQueue.
+  if ('launchQueue' in window) {
+    window.launchQueue.setConsumer((params) => {
+      if (!params.targetURL) return;
+      openDemoFromHash(new URL(params.targetURL).hash);
+    });
+  }
+
+  /* ---------- État hors-ligne ---------- */
+  function updateOnlineState(){
+    const offline = !navigator.onLine;
+    document.body.classList.toggle('is-offline', offline);
+    offlineBanner.hidden = !offline;
+    demoLinks.forEach((link) => {
+      link.setAttribute('aria-disabled', offline ? 'true' : 'false');
+      if (offline) link.setAttribute('title', OFFLINE_HINT);
+      else link.removeAttribute('title');
+    });
+  }
+
+  window.addEventListener('online', updateOnlineState);
+  window.addEventListener('offline', updateOnlineState);
+  updateOnlineState();
 </script>
 
 <script>
+  /* ---------- Service worker + notification de mise à jour ---------- */
+  const updateToast = document.getElementById('updateToast');
+  document.getElementById('updateReload').addEventListener('click', () => location.reload());
+  document.getElementById('updateDismiss').addEventListener('click', () => { updateToast.hidden = true; });
+
   if ('serviceWorker' in navigator) {
+    // Au tout premier chargement il n'y a pas de contrôleur : pas de toast, ce n'est pas une mise à jour.
+    const hadController = !!navigator.serviceWorker.controller;
+
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (hadController) updateToast.hidden = false;
+    });
+
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js').catch((err) => {
+      navigator.serviceWorker.register('sw.js').then((registration) => {
+        // App installée = fenêtre longue durée : on revérifie à chaque retour sur l'onglet.
+        document.addEventListener('visibilitychange', () => {
+          if (document.visibilityState === 'visible' && navigator.onLine) {
+            registration.update().catch(() => {});
+          }
+        });
+      }).catch((err) => {
         console.warn('Service worker non enregistré :', err);
       });
     });
   }
+
+  /* ---------- Bouton d'installation ---------- */
+  const installBtn = document.getElementById('installBtn');
+  let deferredInstallPrompt = null;
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    installBtn.hidden = false;
+  });
+
+  installBtn.addEventListener('click', async () => {
+    if (!deferredInstallPrompt) return;
+    deferredInstallPrompt.prompt();
+    await deferredInstallPrompt.userChoice;
+    deferredInstallPrompt = null;
+    installBtn.hidden = true;
+  });
+
+  window.addEventListener('appinstalled', () => {
+    deferredInstallPrompt = null;
+    installBtn.hidden = true;
+  });
 </script>
 
 </body>

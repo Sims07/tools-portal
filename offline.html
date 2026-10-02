@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0C419A">
+<title>Hors-ligne — Boîte à outils</title>
+<style>
+  :root{--paper:#FFFFFF;--panel:#F9F9F9;--panel-2:#E7ECF5;--ink:#222324;--navy:#0C419A;--teal:#006386;}
+  *{box-sizing:border-box;}
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;line-height:1.55;padding:24px;}
+  main{max-width:480px;border:1px solid var(--panel-2);background:var(--panel);padding:32px 28px;border-radius:6px;}
+  h1{margin:0 0 10px;font-size:1.4rem;color:var(--navy);}
+  p{margin:0 0 18px;color:#44494f;}
+  button{padding:10px 18px;background:var(--navy);color:#fff;border:none;border-radius:4px;font-size:0.95rem;cursor:pointer;}
+  button:hover{background:var(--teal);}
+  button:focus-visible{outline:2px solid var(--teal);outline-offset:2px;}
+</style>
+</head>
+<body>
+<main>
+  <h1>Vous êtes hors-ligne</h1>
+  <p>La page demandée n'est pas disponible sans connexion. Les démos sont hébergées sur d'autres sites et nécessitent une connexion réseau.</p>
+  <button type="button" onclick="location.reload()">Réessayer</button>
+</main>
+</body>
+</html>

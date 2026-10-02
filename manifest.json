@@ -4,14 +4,50 @@
   "description": "Vitrine des outils internes pour architectes solutions : Sniper Map, Visionneuse Carto SI, FDL Extractor, ExcelSheet Time Filler, TOGAF EA Foundation, EIP Architecture Catalog, DDD Architecture Catalog, Team Topologies Catalog, Cognitive Load Evaluator, Platform Pattern Catalog et Portail API Swagger/OpenAPI.",
   "start_url": "./index.html",
   "scope": "./",
-  "id": "/tools-portal/",
+  "id": "./",
   "display": "standalone",
   "orientation": "any",
   "background_color": "#FFFFFF",
   "theme_color": "#0C419A",
   "lang": "fr",
   "dir": "ltr",
-  "capture_links": "new-client",
+  "categories": ["productivity", "business"],
+  "handle_links": "preferred",
+  "launch_handler": {
+    "client_mode": ["focus-existing", "auto"]
+  },
+  "shortcuts": [
+    {
+      "name": "EIP Architecture Catalog",
+      "short_name": "EIP",
+      "description": "Enterprise Integration Patterns",
+      "url": "./index.html#demo=eip"
+    },
+    {
+      "name": "DDD Architecture Catalog",
+      "short_name": "DDD",
+      "description": "Domain-Driven Design",
+      "url": "./index.html#demo=ddd"
+    },
+    {
+      "name": "Team Topologies Catalog",
+      "short_name": "Teams",
+      "description": "Types d'équipes et modes d'interaction",
+      "url": "./index.html#demo=team-topologies"
+    },
+    {
+      "name": "Platform Pattern Catalog",
+      "short_name": "Plateforme",
+      "description": "Patterns de stratégie de plateforme",
+      "url": "./index.html#demo=platform-patterns"
+    },
+    {
+      "name": "Portail API — Swagger / OpenAPI",
+      "short_name": "Portail API",
+      "description": "Catalogue d'APIs OpenAPI",
+      "url": "./index.html#demo=portail-api"
+    }
+  ],
   "icons": [
     {
       "src": "icons/icon-192.png",
