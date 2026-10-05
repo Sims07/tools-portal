@@ -123,6 +123,30 @@
   .update-toast button:hover{background:rgba(255,255,255,0.15);}
   .update-toast button:focus-visible{outline:2px solid #fff;outline-offset:2px;}
   .update-toast .toast-dismiss{border:none;padding:6px 8px;opacity:.8;}
+
+  /* ---------- FAVORIS, RÉCENTS, PARTAGE ---------- */
+  .card-top-right{display:flex;align-items:center;gap:10px;}
+  .fav-btn{width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;padding:0;border:none;background:none;color:#9aa0a6;font-size:18px;line-height:1;cursor:pointer;border-radius:4px;transition:color .15s ease,background .15s ease;}
+  .fav-btn:hover{color:var(--amber);background:var(--panel-2);}
+  .fav-btn[aria-pressed="true"]{color:var(--amber);}
+  .fav-btn:focus-visible,.share-btn:focus-visible,.pinned-clear:focus-visible{outline:2px solid var(--teal);outline-offset:2px;}
+  .card-actions{display:flex;align-items:center;gap:8px;}
+  button.gh-link{background:none;padding:0;cursor:pointer;font:inherit;}
+
+  .pinned{margin-bottom:40px;}
+  .pinned[hidden],.pinned-row[hidden]{display:none;}
+  .pinned-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px;}
+  .pinned-label{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#767c83;min-width:64px;}
+  .pinned-chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .pin-chip{display:inline-flex;align-items:center;gap:8px;max-width:320px;padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--ink);font-size:0.85rem;text-decoration:none;transition:background .15s ease,border-color .15s ease,color .15s ease;}
+  .pin-chip:hover,.pin-chip:focus-visible{background:var(--panel-2);border-color:var(--navy);color:var(--navy);outline:none;}
+  .chip-dot{width:10px;height:10px;border-radius:2px;flex:none;}
+  .chip-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .pinned-clear{padding:5px 10px;background:none;border:1px solid var(--line);border-radius:4px;color:#6b7178;font-family:inherit;font-size:12px;cursor:pointer;}
+  .pinned-clear:hover{background:var(--panel);color:var(--navy);}
+
+  .mini-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:1100;padding:10px 16px;background:var(--ink);color:#fff;border-radius:6px;font-size:13.5px;box-shadow:0 6px 20px rgba(0,0,0,0.25);max-width:calc(100vw - 40px);}
+  .mini-toast[hidden]{display:none;}
 </style>
 </head>
 <body>
@@ -130,6 +154,10 @@
 <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
   <symbol id="icon-github" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  </symbol>
+  <symbol id="icon-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
   </symbol>
 </svg>
 
@@ -188,6 +216,21 @@
 </nav>
 
 <main class="toolkit">
+
+  <!-- FAVORIS & RÉCENTS (rempli par le script, masqué tant qu'il est vide) -->
+  <section class="section-block pinned" id="pinnedSection" aria-label="Favoris et récents" hidden>
+    <h2 class="section-title">⭐ Favoris &amp; récents</h2>
+    <p class="section-desc">Vos outils épinglés et les derniers ouverts sur ce poste.</p>
+    <div class="pinned-row" id="pinnedFavsRow" hidden>
+      <span class="pinned-label mono">Favoris</span>
+      <div class="pinned-chips" id="pinnedFavs"></div>
+    </div>
+    <div class="pinned-row" id="pinnedRecentsRow" hidden>
+      <span class="pinned-label mono">Récents</span>
+      <div class="pinned-chips" id="pinnedRecents"></div>
+      <button type="button" class="pinned-clear" id="pinnedClear">Effacer les récents</button>
+    </div>
+  </section>
 
   <!-- SECTION 1 -->
   <section class="section-block">
@@ -441,6 +484,9 @@
     title="Démonstration de l'outil"></iframe>
 </div>
 
+<!-- Mini-toast (partage, démos indisponibles) -->
+<div class="mini-toast" id="miniToast" role="status" aria-live="polite" hidden></div>
+
 <!-- Toast de mise à jour -->
 <div class="update-toast" id="updateToast" role="status" aria-live="polite" hidden>
   <span>Nouvelle version disponible.</span>
@@ -459,6 +505,189 @@
   const demoLinks = document.querySelectorAll('.demo-link');
 
   const OFFLINE_HINT = "Indisponible hors-ligne : cette démo est hébergée sur un autre site.";
+
+  /* ---------- Favoris, récents et partage ---------- */
+  const FAV_KEY = 'boite-outils:favoris';
+  const RECENT_KEY = 'boite-outils:recents';
+  const MAX_RECENTS = 5;
+  const pinnedSection = document.getElementById('pinnedSection');
+  const pinnedFavsRow = document.getElementById('pinnedFavsRow');
+  const pinnedRecentsRow = document.getElementById('pinnedRecentsRow');
+  const pinnedFavs = document.getElementById('pinnedFavs');
+  const pinnedRecents = document.getElementById('pinnedRecents');
+  const miniToast = document.getElementById('miniToast');
+  let miniToastTimer;
+
+  function showMiniToast(message){
+    miniToast.textContent = message;
+    miniToast.hidden = false;
+    clearTimeout(miniToastTimer);
+    miniToastTimer = setTimeout(() => { miniToast.hidden = true; }, 2400);
+  }
+
+  // Lecture/écriture protégées : le stockage peut être indisponible ou vide.
+  function readList(key){
+    try {
+      const value = JSON.parse(localStorage.getItem(key) || '[]');
+      if (!Array.isArray(value)) return [];
+      return value.filter((id) => typeof id === 'string' && document.querySelector('.card#' + CSS.escape(id)));
+    } catch (err) {
+      return [];
+    }
+  }
+
+  function writeList(key, list){
+    try { localStorage.setItem(key, JSON.stringify(list)); } catch (err) { /* stockage indisponible */ }
+  }
+
+  function toolInfo(id){
+    const card = document.getElementById(id);
+    return {
+      card,
+      title: card.querySelector('h3').textContent.trim(),
+      color: card.querySelector('.swatch').style.background,
+      demo: card.querySelector('.demo-link')
+    };
+  }
+
+  function recordRecent(id){
+    const list = [id, ...readList(RECENT_KEY).filter((x) => x !== id)].slice(0, MAX_RECENTS);
+    writeList(RECENT_KEY, list);
+    renderPinned();
+  }
+
+  function toggleFavorite(id){
+    const favs = readList(FAV_KEY);
+    writeList(FAV_KEY, favs.includes(id) ? favs.filter((x) => x !== id) : [...favs, id]);
+    renderPinned();
+  }
+
+  function renderChips(container, ids){
+    container.textContent = '';
+    ids.forEach((id) => {
+      const info = toolInfo(id);
+      const chip = document.createElement('a');
+      chip.className = 'pin-chip';
+      chip.href = '#' + id;
+      const dot = document.createElement('span');
+      dot.className = 'chip-dot';
+      dot.style.background = info.color;
+      const label = document.createElement('span');
+      label.className = 'chip-label';
+      label.textContent = info.title;
+      chip.append(dot, label);
+      chip.addEventListener('click', (e) => {
+        if (!info.demo) return; // outil sans démo : on laisse le lien d'ancre mener à la fiche
+        e.preventDefault();
+        if (!navigator.onLine) { showMiniToast(OFFLINE_HINT); return; }
+        openDemo(info.demo);
+      });
+      container.append(chip);
+    });
+  }
+
+  function renderPinned(){
+    const favs = readList(FAV_KEY);
+    const recents = readList(RECENT_KEY).filter((id) => !favs.includes(id));
+    renderChips(pinnedFavs, favs);
+    renderChips(pinnedRecents, recents);
+    pinnedFavsRow.hidden = favs.length === 0;
+    pinnedRecentsRow.hidden = recents.length === 0;
+    pinnedSection.hidden = favs.length === 0 && recents.length === 0;
+
+    document.querySelectorAll('.fav-btn').forEach((btn) => {
+      const on = favs.includes(btn.dataset.tool);
+      const label = on ? 'Retirer des favoris' : 'Ajouter aux favoris';
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      btn.setAttribute('aria-label', label);
+      btn.title = label;
+      btn.textContent = on ? '★' : '☆';
+    });
+  }
+
+  document.getElementById('pinnedClear').addEventListener('click', () => {
+    writeList(RECENT_KEY, []);
+    renderPinned();
+  });
+
+  // Partage : lien direct vers la démo (#demo=<id>) ou vers la fiche (#<id>).
+  function shareUrl(id){
+    const base = location.href.split(/[?#]/)[0];
+    return base + (toolInfo(id).demo ? '#demo=' + id : '#' + id);
+  }
+
+  async function copyText(text){
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (err) {
+      const area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      area.style.cssText = 'position:fixed;opacity:0;';
+      document.body.append(area);
+      area.select();
+      let ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      area.remove();
+      return ok;
+    }
+  }
+
+  async function shareTool(id){
+    const info = toolInfo(id);
+    const data = {
+      title: info.title,
+      text: info.card.querySelector('.desc').textContent.trim(),
+      url: shareUrl(id)
+    };
+    if (navigator.share) {
+      try {
+        await navigator.share(data);
+        return;
+      } catch (err) {
+        if (err && err.name === 'AbortError') return; // partage annulé par l'utilisateur
+      }
+    }
+    const ok = await copyText(data.url);
+    showMiniToast(ok ? 'Lien copié dans le presse-papiers' : 'Copie impossible : ' + data.url);
+  }
+
+  // Ajoute l'étoile (favori) et le bouton de partage sur chaque fiche.
+  document.querySelectorAll('.card').forEach((card) => {
+    const id = card.id;
+
+    const swatch = card.querySelector('.swatch');
+    const fav = document.createElement('button');
+    fav.type = 'button';
+    fav.className = 'fav-btn';
+    fav.dataset.tool = id;
+    fav.addEventListener('click', () => toggleFavorite(id));
+    const topRight = document.createElement('div');
+    topRight.className = 'card-top-right';
+    swatch.replaceWith(topRight);
+    topRight.append(fav, swatch);
+
+    const gh = card.querySelector('.gh-link');
+    const share = document.createElement('button');
+    share.type = 'button';
+    share.className = 'gh-link share-btn';
+    share.title = 'Partager cet outil';
+    share.setAttribute('aria-label', 'Partager cet outil');
+    share.innerHTML = '<svg><use href="#icon-share"></use></svg>';
+    share.addEventListener('click', () => shareTool(id));
+    const actions = document.createElement('div');
+    actions.className = 'card-actions';
+    gh.replaceWith(actions);
+    actions.append(share, gh);
+
+    // Pages d'installation (bookmarklets) : comptent aussi comme « ouvertes ».
+    card.querySelectorAll('.cta[href]:not(.demo-link)').forEach((link) => {
+      link.addEventListener('click', () => recordRecent(id));
+    });
+  });
+
+  renderPinned();
 
   /* ---------- Démos ---------- */
   function openDemo(link){
