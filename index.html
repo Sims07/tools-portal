@@ -1463,7 +1463,7 @@ footer{
 
 <footer>
   <span>Licence MIT — outils internes, à diffuser librement en équipe.</span>
-  <span class="mono">Charte graphique Ameli</span>
+  <span class="mono">Direction artistique Linear Pro</span>
 </footer>
 
 </div><!-- end gallery-view -->
@@ -1507,15 +1507,32 @@ footer{
 
   const OFFLINE_HINT = "Indisponible hors-ligne : cette démo est hébergée sur un autre site.";
 
-  /* ---------- Filtres par catégorie ---------- */
+  /* ---------- Filtres par catégorie + scroll ---------- */
   document.querySelectorAll('.filter-chip').forEach((chip) => {
     chip.addEventListener('click', () => {
+      // 1. Mise à jour de l'état visuel des chips
       document.querySelector('.filter-chip.is-active')?.classList.remove('is-active');
       chip.classList.add('is-active');
+
       const f = chip.dataset.filter;
+
+      // 2. Affichage / masquage des sections
       document.querySelectorAll('.section-block[data-category]').forEach((section) => {
         section.hidden = f !== 'all' && section.dataset.category !== f;
       });
+
+      // 3. Scroll vers la section cible
+      if (f === 'all') {
+        // "Tout" → remonter au début du catalogue (sous le hero)
+        const toolkit = document.getElementById('toolkit');
+        // Ne scroll que si on est déjà descendu au-delà du toolkit
+        if (toolkit && toolkit.getBoundingClientRect().top < -50) {
+          toolkit.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      } else {
+        const target = document.querySelector('.section-block[data-category="' + f + '"]');
+        target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
   });
 
