@@ -1,6 +1,6 @@
 # 🗺️ BOÎTE À OUTILS — ARCHITECTURE SOLUTIONS
 
-Page vitrine statique, en un seul fichier HTML (PWA installable), présentant les outils internes destinés aux **architectes solutions** : Sniper Map, Visionneuse Carto SI, FDL Extractor, ExcelSheet Time Filler, le simulateur TOGAF EA Foundation, EIP Architecture Catalog, DDD Architecture Catalog, Team Topologies Catalog, Cognitive Load Evaluator, Platform Pattern Catalog, AI Pattern Catalog et le Portail API Swagger/OpenAPI.
+Page vitrine statique, en un seul fichier HTML (PWA installable), présentant les outils internes destinés aux **architectes solutions** : Sniper Map, Visionneuse Carto SI, FDL Extractor, ExcelSheet Time Filler, le simulateur TOGAF EA Foundation, EIP Architecture Catalog, DDD Architecture Catalog, Team Topologies Catalog, Cognitive Load Evaluator, Platform Pattern Catalog, AI Pattern Catalog, Enterprise Capacity Mapper et le Portail API Swagger/OpenAPI.
 
 ---
 
@@ -47,9 +47,10 @@ Une légende fixe en haut de page associe chaque couleur à un outil et permet d
 - Charge cognitive
 - Plateforme
 - IA
+- Capacités métier
 - Portail API
 
-### 3. Grille des 12 outils
+### 3. Grille des 13 outils
 Chaque fiche affiche :
 - La **catégorie** (Bookmarklet, Macro VBA, Application web) et le **domaine visé**.
 - Une **description** orientée usage.

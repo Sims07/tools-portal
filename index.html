@@ -8,7 +8,7 @@
 <!-- PWA -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0A0B0D">
-<meta name="description" content="Vitrine des outils internes pour architectes solutions : Sniper Map, Visionneuse Carto SI, FDL Extractor, ExcelSheet Time Filler, TOGAF EA Foundation, EIP Architecture Catalog, DDD Architecture Catalog, Team Topologies Catalog, Cognitive Load Evaluator, Platform Pattern Catalog, AI Pattern Catalog et Portail API Swagger/OpenAPI.">
+<meta name="description" content="Vitrine des outils internes pour architectes solutions : Sniper Map, Visionneuse Carto SI, FDL Extractor, ExcelSheet Time Filler, TOGAF EA Foundation, EIP Architecture Catalog, DDD Architecture Catalog, Team Topologies Catalog, Cognitive Load Evaluator, Platform Pattern Catalog, AI Pattern Catalog, Enterprise Capacity Mapper et Portail API Swagger/OpenAPI.">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
@@ -1094,6 +1094,10 @@ footer{
     <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
     <path d="M20 3v4"/><path d="M22 5h-4"/>
   </symbol>
+  <symbol id="icon-map" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/>
+    <line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/>
+  </symbol>
   <symbol id="icon-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
     <line x1="12" y1="9" x2="12" y2="13"/>
@@ -1118,11 +1122,11 @@ footer{
     </div>
 
     <h1 class="hero-title">
-      Douze outils qui suppriment les <em>clics inutiles</em> du quotidien.
+      Treize outils qui suppriment les <em>clics inutiles</em> du quotidien.
     </h1>
 
     <p class="hero-sub">
-      De la cartographie SI aux catalogues de patterns (EIP, DDD, Team Topologies, Plateforme, IA), en passant par la charge cognitive, la saisie des temps et l'agrégation d'APIs : un outil par tâche répétitive.
+      De la cartographie SI et des capacités métier aux catalogues de patterns (EIP, DDD, Team Topologies, Plateforme, IA), en passant par la charge cognitive, la saisie des temps et l'agrégation d'APIs : un outil par tâche répétitive.
     </p>
 
     <div class="hero-actions">
@@ -1134,7 +1138,7 @@ footer{
     </div>
 
     <dl class="hero-stats">
-      <div><dt>Outils</dt><dd>12</dd></div>
+      <div><dt>Outils</dt><dd>13</dd></div>
       <div><dt>Installation</dt><dd>0 serveur</dd></div>
       <div><dt>Licence</dt><dd>MIT</dd></div>
     </dl>
@@ -1226,6 +1230,28 @@ footer{
           <div class="card-links">
             <a class="cta" href="https://sims07.github.io/inline-image-viewer/install.html" target="_blank" rel="noopener">Page d'installation →</a>
             <a class="gh-link" href="https://github.com/Sims07/inline-image-viewer" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" id="capacity-mapper">
+        <div class="card-top">
+          <span class="card-cat mono">Application web PWA · Capacités métier</span>
+          <div class="card-top-right"></div>
+        </div>
+        <div class="card-icon" aria-hidden="true"><svg><use href="#icon-map"></use></svg></div>
+        <h3>Enterprise Capacity Mapper</h3>
+        <p class="desc">Cartographiez vos capacités métier et leur couverture applicative, puis mesurez l'impact d'un changement sur vos applications.</p>
+        <ul class="feat">
+          <li>Modèle Domaines L0 → Capacités L1 → Applications, relation N↔N</li>
+          <li>Analyse d'impact : applications touchées, gaps et redondances</li>
+          <li>Données locales, import / export JSON versionné, sans backend</li>
+        </ul>
+        <div class="card-footer">
+          <span class="version-tag">React + Vite</span>
+          <div class="card-links">
+            <a class="cta demo-link" href="https://sims07.github.io/enterprise-capacity-mapper/" data-title="Enterprise Capacity Mapper">Ouvrir l'outil →</a>
+            <a class="gh-link" href="https://github.com/Sims07/enterprise-capacity-mapper" target="_blank" rel="noopener" aria-label="Code source sur GitHub"><svg><use href="#icon-github"></use></svg></a>
           </div>
         </div>
       </article>
