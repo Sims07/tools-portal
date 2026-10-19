@@ -48,10 +48,9 @@
       var id = favorite.dataset.tool;
       if (!id) return;
 
-      // toggleFavorite() runs before this delegated handler because its listener
-      // is registered earlier; aria-pressed therefore represents the new state.
-      var action = favorite.getAttribute('aria-pressed') === 'true' ? 'favorite-add' : 'favorite-remove';
-      trackTool(id, action);
+      // This listener runs during capture, before toggleFavorite() updates aria-pressed.
+      var wasFavorite = favorite.getAttribute('aria-pressed') === 'true';
+      trackTool(id, wasFavorite ? 'favorite-remove' : 'favorite-add');
     }, true);
   }
 
