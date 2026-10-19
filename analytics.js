@@ -64,8 +64,19 @@
     }, true);
   }
 
+  function bindGithubTracking() {
+    document.addEventListener('click', function (event) {
+      var link = event.target.closest && event.target.closest('.gh-link');
+      if (!link) return;
+      var card = link.closest('.card');
+      if (!card || !card.id) return;
+      trackTool(card.id, 'github');
+    }, true);
+  }
+
   // The portal uses an iframe for demos. Tracking the click gives us one
   // consistent usage metric for both embedded demos and direct external links.
   bindFavoriteTracking();
   bindToolUsageTracking();
+  bindGithubTracking();
 })();
