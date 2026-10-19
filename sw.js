@@ -1,7 +1,7 @@
 // Boîte à outils — Architecture Solutions — Service Worker
 // Vitrine statique : mise en cache de la coquille de l'application pour accès hors-ligne.
 
-const CACHE_VERSION = 'v9';
+const CACHE_VERSION = 'v10';
 const CACHE_NAME = `boite-a-outils-${CACHE_VERSION}`;
 
 const APP_SHELL = [
@@ -52,7 +52,6 @@ function putInCache(request, response) {
   caches.open(CACHE_NAME).then((cache) => cache.put(request, copy)).catch(() => {});
 }
 
-// Stale-while-revalidate : réponse immédiate depuis le cache, mise à jour en arrière-plan.
 function staleWhileRevalidate(event) {
   const { request } = event;
   return caches.match(request).then((cached) => {
@@ -70,6 +69,26 @@ function staleWhileRevalidate(event) {
   });
 }
 
+async function withAnalytics(response) {
+  if (!response || !response.ok) return response;
+  const contentType = response.headers.get('content-type') || '';
+  if (!contentType.includes('text/html')) return response;
+
+  const html = await response.text();
+  if (html.includes('./analytics.js')) return new Response(html, {
+    status: response.status,
+    statusText: response.statusText,
+    headers: response.headers,
+  });
+
+  const injected = html.replace('</head>', '  <script src="./analytics.js" defer></script>\n</head>');
+  return new Response(injected, {
+    status: response.status,
+    statusText: response.statusText,
+    headers: response.headers,
+  });
+}
+
 self.addEventListener('fetch', (event) => {
   const { request } = event;
 
@@ -78,13 +97,12 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(request.url);
   const isSameOrigin = url.origin === self.location.origin;
 
-  // Navigation : réseau d'abord, puis index.html en cache, puis page hors-ligne.
   if (request.mode === 'navigate') {
     event.respondWith(
       (async () => {
         try {
           const preloaded = await event.preloadResponse;
-          const response = preloaded || await fetch(request);
+          const response = await withAnalytics(preloaded || await fetch(request));
           if (response.ok) {
             const copy = response.clone();
             caches.open(CACHE_NAME).then((cache) => cache.put('./index.html', copy)).catch(() => {});
@@ -99,7 +117,6 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Ressources de la même origine et ressources tierces (polices) : SWR.
   if (isSameOrigin || url.hostname.endsWith('googleapis.com') || url.hostname.endsWith('gstatic.com')) {
     event.respondWith(staleWhileRevalidate(event));
     return;
