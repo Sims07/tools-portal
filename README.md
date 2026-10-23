@@ -1,99 +1,65 @@
-# 🗺️ BOÎTE À OUTILS — ARCHITECTURE SOLUTIONS
+# Boîte à outils — Architecture Solutions
 
-Page vitrine statique, en un seul fichier HTML (PWA installable), présentant les outils internes destinés aux **architectes solutions** : Sniper Map, Visionneuse Carto SI, FDL Extractor, ExcelSheet Time Filler, le simulateur TOGAF EA Foundation, EIP Architecture Catalog, DDD Architecture Catalog, Team Topologies Catalog, Cognitive Load Evaluator, Platform Pattern Catalog, AI Pattern Catalog, Enterprise Capacity Mapper et le Portail API Swagger/OpenAPI.
+Portail statique qui rassemble les outils destinés aux architectes solutions : fiches descriptives, liens vers les dépôts et démonstrations intégrées dans la page. Le site est conçu pour être publié sur GitHub Pages et peut être installé comme une **Progressive Web App (PWA)** sur les navigateurs compatibles.
 
----
+## Accès
 
-## 📌 À PROPOS
+- **Portail en ligne** : https://sims07.github.io/tools-portal/
+- **Code source** : https://github.com/Sims07/tools-portal
 
-Cette page ne contient aucune logique métier : c'est une **vitrine de présentation**, pensée pour être partagée en équipe ou déposée sur un portail interne, qui répertorie les outils existants, leur mode d'installation (bookmarklet, macro VBA, application web) et leurs fonctionnalités clés, sans avoir à relire chaque README individuellement.
+## Fonctionnalités
 
-- Un **hero** présentant la démarche générale (outils qui suppriment les tâches répétitives, sans rien modifier aux applications d'entreprise).
-- Une **grille de fiches** réparties en 4 sections, avec catégorie, description, points clés et lien direct d'installation ou de démo.
-- Une **légende cliquable** reprenant le code couleur des outils, qui sert aussi de navigation rapide vers chaque fiche.
+- **Catalogue d’outils** organisé par catégories, avec descriptions, fonctionnalités clés, versions et liens vers les démos ou dépôts.
+- **Filtres par catégorie** pour naviguer rapidement dans le catalogue.
+- **Démos intégrées** dans la page, avec retour à la galerie et prise en charge de la touche Échap. Les démos sont hébergées sur des sites distincts et nécessitent généralement une connexion Internet.
+- **Favoris et outils récents** pour retrouver facilement les fiches consultées.
+- **Partage** d’un lien vers un outil, via le mécanisme de partage du navigateur ou une copie dans le presse-papiers.
+- **PWA et mode hors ligne** : un service worker met en cache la coquille de l’application et permet de retrouver la page lorsque le réseau est indisponible. Les démos externes ne sont pas garanties hors ligne.
+- **Responsive et accessibilité** : interface adaptée aux écrans mobiles et prise en compte de la préférence système de réduction des animations.
 
----
+## Installation et utilisation
 
-## 🚀 INSTALLATION / UTILISATION
+### Utiliser le portail en ligne
 
-Aucune installation serveur n'est nécessaire : c'est une page HTML autonome (CSS embarqué, une seule dépendance externe à Google Fonts pour la typographie).
+Ouvrez [le portail](https://sims07.github.io/tools-portal/) dans un navigateur récent. Sur les navigateurs compatibles, utilisez la commande d’installation ou d’ajout à l’écran d’accueil pour l’utiliser comme une application.
 
-### Option 1 : Ouverture locale
-1. Double-cliquez sur `index.html` pour l'ouvrir directement dans votre navigateur.
+### Ouvrir le projet localement
 
-### Option 2 : Hébergement (recommandé pour un partage d'équipe)
-1. Déposez les fichiers sur votre hébergement statique habituel (ex. GitHub Pages).
-2. Partagez l'URL obtenue à votre équipe ; la page peut être installée comme application (PWA).
+Vous pouvez ouvrir `index.html` directement pour consulter l’interface, mais **le fonctionnement PWA complet nécessite un contexte sécurisé** (par exemple HTTPS, comme GitHub Pages, ou un serveur local). Certaines fonctionnalités du navigateur, notamment le service worker et l’installation, peuvent ne pas fonctionner en ouverture directe via `file://`.
 
-> ℹ️ La page ne stocke ni ne transmet aucune donnée : elle est entièrement statique.
+### Publier une modification
 
----
+Le site est prévu pour une publication statique sur **GitHub Pages**, à partir de la branche configurée dans les paramètres du dépôt. Avec la configuration actuelle, les changements fusionnés dans `main` déclenchent normalement une nouvelle publication automatique. Le délai de mise à jour peut varier.
 
-## 🎨 FONCTIONNALITÉS
+Le dépôt ne nécessite ni serveur applicatif ni étape de compilation Node.js pour servir les fichiers statiques.
 
-### 1. Hero et schéma en réseau
-Un schéma vectoriel animé illustre la thématique de cartographie SI commune aux outils. Respecte la préférence système `prefers-reduced-motion`.
+## Données locales et confidentialité
 
-### 2. Bandeau légende / navigation rapide
-Une légende fixe en haut de page associe chaque couleur à un outil et permet d'accéder directement à sa fiche :
-- Cartographie SI
-- Visualisation
-- Documents
-- Saisie de temps
-- Certification
-- EIP
-- DDD
-- Teams
-- Charge cognitive
-- Plateforme
-- IA
-- Capacités métier
-- Portail API
+- Les **favoris** et la liste des **outils récents** sont enregistrés dans le `localStorage` du navigateur. Ils restent propres à ce navigateur et à cette origine : ils ne sont pas synchronisés entre appareils et peuvent être effacés par le nettoyage des données du site.
+- Le portail utilise **GoatCounter** pour mesurer des événements d’usage (ouverture d’un outil, ajout/retrait d’un favori et clic sur le lien GitHub associé). Ces événements sont envoyés à un service externe ; le portail ne gère pas lui-même de base de données.
+- Les polices de caractères sont chargées depuis **Google Fonts**. Ces services externes nécessitent une connexion et peuvent recevoir les requêtes correspondantes du navigateur.
+- Les démos et dépôts liés sont des projets distincts, soumis à leurs propres conditions et pratiques de confidentialité.
 
-### 3. Grille des 13 outils
-Chaque fiche affiche :
-- La **catégorie** (Bookmarklet, Macro VBA, Application web) et le **domaine visé**.
-- Une **description** orientée usage.
-- **3 points clés**, repris des fonctionnalités principales de chaque outil.
-- La **version actuelle** et les **liens directs** (page d'installation/démo + dépôt GitHub).
+## Structure du dépôt
 
-### 4. Démos intégrées
-Les applications web s'ouvrent dans la page (changement de vue, sans popup), avec retour à la galerie ou touche `Échap`.
-
-### 5. Responsive et hors-ligne
-La grille s'adapte automatiquement à la largeur d'écran ; un service worker met en cache la coquille de l'application.
-
----
-
-## 🎨 CHARTE GRAPHIQUE
-
-Cette page reprend la charte graphique **Ameli** :
-- **Fond principal** : `#FFFFFF`
-- **Couleur primaire** (titres, bordures) : `#0C419A`
-- **Couleur secondaire** (accents) : `#006386`
-- **Texte** : `#222324`
-- **Surfaces de cartes/grilles** : `#F9F9F9`, `#E7ECF5`
-- **Couleurs de légende** :
-  - Violet `#6a0dad` (Visualisation)
-  - Orange `#D97706` (Documents)
-  - Jaune `#F0B323` (Saisie de temps)
-  - Rouge `#B33F2E` (Intégration EIP)
-  - Bleu `#2563EB` (Domain-Driven Design)
-  - Turquoise `#0D9488` (Team Topologies)
-  - Rose `#DB2777` (Charge cognitive)
-  - Indigo `#4F46E5` (Platform Pattern Catalog)
-  - Vert `#89bf04` (Portail API)
-
----
-
-## 🛠️ STRUCTURE DU PROJET
-
-```
+```text
 .
-├── index.html        # Page vitrine (HTML + CSS + JS embarqués)
-├── manifest.json     # Manifest PWA
-├── sw.js             # Service worker (CACHE_VERSION incrémentée par le hook pre-commit)
-├── icons/            # Icônes PWA (standard et maskable)
+├── index.html        # Interface, styles et logique principale du portail
+├── analytics.js      # Intégration du suivi d’usage GoatCounter
+├── manifest.json     # Métadonnées et raccourcis de la PWA
+├── sw.js             # Service worker : cache, mode hors ligne et mises à jour
+├── offline.html      # Page de secours hors ligne
+├── icons/            # Icônes de l’application
 └── .githooks/
     └── pre-commit    # Incrémente CACHE_VERSION dans sw.js
 ```
+
+## Maintenance
+
+- Quand les ressources mises en cache changent, le hook `.githooks/pre-commit` incrémente la constante `CACHE_VERSION` de `sw.js`, afin que les clients puissent renouveler leur cache.
+- Si le hook n’est pas activé localement, configurez les hooks Git du dépôt avec `git config core.hooksPath .githooks`.
+- L’intégration analytique est centralisée dans `analytics.js`, ce qui facilite son remplacement ou son retrait.
+
+## Licence
+
+Le pied de page du portail indique une licence MIT. Vérifiez la licence de chaque outil lié dans son propre dépôt avant de redistribuer son code.
