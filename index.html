@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Boîte à outils — Architecture Solutions</title>
 
+<!-- Analytics loads on the first visit, independently of the service worker. -->
+<script src="./analytics.js" defer></script>
+
 <!-- PWA -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0A0B0D">
@@ -1773,6 +1776,13 @@ footer{
     demoViewIframe.src = url;
     galleryView.classList.add('hidden');
     demoView.classList.add('active');
+    // One event per actual demo opening, regardless of its entry point.
+    const card = link.closest('.card');
+    if (card?.id) {
+      document.dispatchEvent(new CustomEvent('tools-portal:tool-open', {
+        detail: { toolId: card.id }
+      }));
+    }
     window.scrollTo(0, 0);
   }
 
