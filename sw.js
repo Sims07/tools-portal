@@ -1,12 +1,13 @@
 // Boîte à outils — Architecture Solutions — Service Worker
 // Vitrine statique : mise en cache de la coquille de l'application pour accès hors-ligne.
 
-const CACHE_VERSION = 'v10';
+const CACHE_VERSION = 'v11';
 const CACHE_NAME = `boite-a-outils-${CACHE_VERSION}`;
 
 const APP_SHELL = [
   './',
   './index.html',
+  './analytics.js',
   './offline.html',
   './manifest.json',
   './icons/icon-192.png',
@@ -69,26 +70,6 @@ function staleWhileRevalidate(event) {
   });
 }
 
-async function withAnalytics(response) {
-  if (!response || !response.ok) return response;
-  const contentType = response.headers.get('content-type') || '';
-  if (!contentType.includes('text/html')) return response;
-
-  const html = await response.text();
-  if (html.includes('./analytics.js')) return new Response(html, {
-    status: response.status,
-    statusText: response.statusText,
-    headers: response.headers,
-  });
-
-  const injected = html.replace('</head>', '  <script src="./analytics.js" defer></script>\n</head>');
-  return new Response(injected, {
-    status: response.status,
-    statusText: response.statusText,
-    headers: response.headers,
-  });
-}
-
 self.addEventListener('fetch', (event) => {
   const { request } = event;
 
@@ -102,7 +83,7 @@ self.addEventListener('fetch', (event) => {
       (async () => {
         try {
           const preloaded = await event.preloadResponse;
-          const response = await withAnalytics(preloaded || await fetch(request));
+          const response = preloaded || await fetch(request);
           if (response.ok) {
             const copy = response.clone();
             caches.open(CACHE_NAME).then((cache) => cache.put('./index.html', copy)).catch(() => {});
