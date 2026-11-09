@@ -58,7 +58,26 @@ Le dépôt ne nécessite ni serveur applicatif ni étape de compilation Node.js 
 
 - Quand les ressources mises en cache changent, le hook `.githooks/pre-commit` incrémente la constante `CACHE_VERSION` de `sw.js`, afin que les clients puissent renouveler leur cache.
 - Si le hook n’est pas activé localement, configurez les hooks Git du dépôt avec `git config core.hooksPath .githooks`.
-- L’intégration analytique est centralisée dans `analytics.js`, ce qui facilite son remplacement ou son retrait.
+- L’intégration analytique est centralisée dans `analytics.js` et chargée directement par `index.html` (y compris lors de la première visite). Le service worker met ce script local en cache pour la PWA.
+
+
+## Vérifier le suivi GoatCounter
+
+Ouvrir [le tableau de bord GoatCounter](https://tools-portal.goatcounter.com/) avec le compte ayant accès aux statistiques, puis consulter les **événements**. Chaque événement est indépendant des visites du portail et conserve l’identifiant de l’outil, ce qui permet de filtrer ou de comparer les actions par outil.
+
+| Événement | Signification |
+| --- | --- |
+| `tool-open:<id>` | Clic sur un lien d’ouverture externe ou ouverture effective de la vue de démo (galerie, favori/récent, lien partagé). |
+| `tool-favorite-add:<id>` | Ajout aux favoris. |
+| `tool-favorite-remove:<id>` | Retrait des favoris. |
+| `tool-github:<id>` | Clic sur le **vrai lien** GitHub de la fiche. |
+| `tool-share:<id>` | Clic sur « Partager » (intention de partage, pas confirmation d’un partage finalisé). |
+
+`<id>` est l’identifiant stable de la carte dans `index.html` (par exemple `enterprise-capacity-mapper`). Les événements sont comptés à chaque action grâce à `no_session: true`, alors que les visites de page sont soumises aux règles de session de GoatCounter.
+
+Pour un contrôle manuel après publication, ouvrir le portail dans un navigateur **sans bloqueur de suivi**, puis effectuer un clic sur un favori, un bouton GitHub et « Partager ». Dans les outils de développement, onglet **Réseau**, filtrer sur `goatcounter.com/count` ; une requête doit être émise pour chaque action. Vérifier ensuite les événements dans le tableau de bord (actualisation typiquement sous une dizaine de secondes). Une requête bloquée par le navigateur ou une extension ne peut pas être comptabilisée.
+
+Exécuter les tests de non-régression locaux avec `node --test tests/analytics.test.cjs` (Node.js est nécessaire seulement pour ces tests, **pas** pour publier le portail).
 
 ## Licence
 
