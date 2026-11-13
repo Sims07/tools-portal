@@ -1,0 +1,29 @@
+name: Frontend Pattern Catalog
+
+on:
+  pull_request:
+    paths:
+      - "front-pattern-catalog/**"
+      - "index.html"
+      - "manifest.json"
+      - "sw.js"
+      - ".github/workflows/frontend-pattern-catalog.yml"
+  push:
+    branches: [main]
+    paths:
+      - "front-pattern-catalog/**"
+      - "index.html"
+      - "manifest.json"
+      - "sw.js"
+      - ".github/workflows/frontend-pattern-catalog.yml"
+  workflow_dispatch:
+
+jobs:
+  catalog-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --test front-pattern-catalog/tests/catalog.test.mjs
