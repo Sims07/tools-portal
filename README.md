@@ -10,6 +10,7 @@ Portail statique qui rassemble les outils destinés aux architectes solutions : 
 ## Fonctionnalités
 
 - **Catalogue d’outils** organisé par catégories, avec descriptions, fonctionnalités clés, versions et liens vers les démos ou dépôts.
+- **Front Pattern Catalog** : 17 architectures frontend (SPA, BFF REST/GraphQL, SSR/SSG, serverless, CMS traditionnel ou headless et mobile) dans une PWA autonome, avec arbre de décision interactif, comparaison et export ADR. [Site](https://sims07.github.io/front-pattern-catalog/) · [Code source](https://github.com/Sims07/front-pattern-catalog).
 - **Filtres par catégorie** pour naviguer rapidement dans le catalogue.
 - **Démos intégrées** dans la page, avec retour à la galerie et prise en charge de la touche Échap. Les démos sont hébergées sur des sites distincts et nécessitent généralement une connexion Internet.
 - **Favoris et outils récents** pour retrouver facilement les fiches consultées.
