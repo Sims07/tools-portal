@@ -20,6 +20,8 @@ test('Front Pattern Catalog est dans la section catalogues, avec lien de démo e
   assert.ok(start < portal.indexOf('data-category="productivite"'));
   const card = portal.slice(start, portal.indexOf('</article>', start));
   assert.match(card, /<h3>Front Pattern Catalog<\/h3>/);
+  assert.match(card, /17 architectures/);
+  assert.match(card, /Arbre de décision interactif/);
   assert.match(card, /class="cta demo-link" href="https:\/\/sims07\.github\.io\/front-pattern-catalog\/"/);
   assert.match(card, /class="gh-link" href="https:\/\/github\.com\/Sims07\/front-pattern-catalog"/);
   assert.match(card, /<div class="card-top-right"><\/div>/);
