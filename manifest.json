@@ -68,7 +68,7 @@
     {
       "name": "Front Pattern Catalog",
       "short_name": "Patterns Front",
-      "description": "Architectures frontend, BFF REST/GraphQL et serverless",
+      "description": "17 architectures frontend, arbre de décision et comparateur",
       "url": "./index.html#demo=frontend-patterns"
     }
   ],
