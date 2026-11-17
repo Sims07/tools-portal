@@ -1,5 +1,5 @@
 /* GoatCounter analytics for tools-portal.
- * The site code is intentionally kept in one place so the integration is easy to replace.
+ * Event paths are stable so historical statistics remain comparable.
  */
 (function () {
   'use strict';
@@ -36,7 +36,7 @@
 
   function trackTool(id, action) {
     var card = document.getElementById(id);
-    if (!card) return;
+    if (!card || !card.classList.contains('card')) return;
     var title = toolTitle(card);
     sendEvent('tool-' + action + ':' + id, title + ' — ' + action);
   }
@@ -48,35 +48,51 @@
       var id = favorite.dataset.tool;
       if (!id) return;
 
-      // This listener runs during capture, before toggleFavorite() updates aria-pressed.
+      // Capture runs before toggleFavorite() updates aria-pressed.
       var wasFavorite = favorite.getAttribute('aria-pressed') === 'true';
       trackTool(id, wasFavorite ? 'favorite-remove' : 'favorite-add');
     }, true);
   }
 
   function bindToolUsageTracking() {
+    // External tools are opened directly. Demos are tracked by openDemo()
+    // so shortcuts, shared deep links and gallery clicks all count once.
     document.addEventListener('click', function (event) {
-      var link = event.target.closest && event.target.closest('.cta[href]');
+      var link = event.target.closest && event.target.closest('a.cta[href]:not(.demo-link)');
       if (!link) return;
       var card = link.closest('.card');
-      if (!card || !card.id) return;
-      trackTool(card.id, 'open');
+      if (card && card.id) trackTool(card.id, 'open');
     }, true);
+
+    document.addEventListener('tools-portal:tool-open', function (event) {
+      if (event.detail && event.detail.toolId) {
+        trackTool(event.detail.toolId, 'open');
+      }
+    });
   }
 
   function bindGithubTracking() {
     document.addEventListener('click', function (event) {
-      var link = event.target.closest && event.target.closest('.gh-link');
+      // The share button also uses .gh-link for styling: only GitHub
+      // anchors are actual GitHub visits.
+      var link = event.target.closest && event.target.closest('a.gh-link[href^="https://github.com/"]');
       if (!link) return;
       var card = link.closest('.card');
-      if (!card || !card.id) return;
-      trackTool(card.id, 'github');
+      if (card && card.id) trackTool(card.id, 'github');
     }, true);
   }
 
-  // The portal uses an iframe for demos. Tracking the click gives us one
-  // consistent usage metric for both embedded demos and direct external links.
+  function bindShareTracking() {
+    document.addEventListener('click', function (event) {
+      var button = event.target.closest && event.target.closest('button.share-btn');
+      if (!button) return;
+      var card = button.closest('.card');
+      if (card && card.id) trackTool(card.id, 'share');
+    }, true);
+  }
+
   bindFavoriteTracking();
   bindToolUsageTracking();
   bindGithubTracking();
+  bindShareTracking();
 })();
